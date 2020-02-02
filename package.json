@@ -1,0 +1,37 @@
+{
+  "name": "declarative-canvas",
+  "version": "0.1.0",
+  "main": "lib/index.js",
+  "author": "Łukasz Jenczmyk",
+  "license": "MIT",
+  "description": "Library which lets you draw on canvas in a declarative way.",
+  "keywords": [
+    "canvas",
+    "draw",
+    "drawing",
+    "render",
+    "rendering",
+    "declarative programming"
+  ],
+  "scripts": {
+    "dev": "babel --watch src -d lib",
+    "build": "babel src -d lib",
+    "lint": "eslint ./src/**/*.js",
+    "prepush": "yarn run lint",
+    "prepublishOnly": "yarn run build && yarn run prepush"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.8.4",
+    "@babel/core": "7.8.4",
+    "@babel/plugin-proposal-object-rest-spread": "7.8.3",
+    "@babel/plugin-transform-modules-commonjs": "7.8.3",
+    "eslint": "6.8.0",
+    "husky": "4.2.1",
+    "prettier": "1.19.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn run prepush"
+    }
+  }
+}

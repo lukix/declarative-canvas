@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "node"
+  - "lts/*"
+jobs:
+  include:
+    - stage: test
+      script: npm run build && npm run prepush
+deploy:
+  skip_cleanup: true
+  provider: npm
+  email: $NPM_EMAIL
+  api_key: $NPM_TOKEN
+  on:
+    tags: true
