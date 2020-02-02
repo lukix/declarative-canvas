@@ -18,13 +18,16 @@
     "build": "babel src -d lib",
     "lint": "eslint ./src/**/*.js",
     "prepush": "yarn run lint",
-    "prepublishOnly": "yarn run build && yarn run prepush"
+    "prepublishOnly": "yarn run build && yarn run prepush",
+    "storybook": "start-storybook"
   },
   "devDependencies": {
     "@babel/cli": "7.8.4",
     "@babel/core": "7.8.4",
     "@babel/plugin-proposal-object-rest-spread": "7.8.3",
     "@babel/plugin-transform-modules-commonjs": "7.8.3",
+    "@storybook/html": "^5.3.10",
+    "babel-loader": "^8.0.6",
     "eslint": "6.8.0",
     "husky": "4.2.1",
     "prettier": "1.19.1"
