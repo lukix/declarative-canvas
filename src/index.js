@@ -4,6 +4,7 @@ import drawPath from './drawPath';
 import drawImage from './drawImage';
 import drawText from './drawText';
 import drawRect from './drawRect';
+import drawTransform from './drawTransform';
 
 export const objectTypes = {
   CIRCLE: 'CIRCLE',
@@ -11,6 +12,7 @@ export const objectTypes = {
   IMAGE: 'IMAGE',
   TEXT: 'TEXT',
   RECT: 'RECT',
+  TRANSFORM: 'TRANSFORM',
 };
 
 const defaultHandlers = {
@@ -19,10 +21,22 @@ const defaultHandlers = {
   [objectTypes.IMAGE]: drawImage,
   [objectTypes.TEXT]: drawText,
   [objectTypes.RECT]: drawRect,
+  [objectTypes.TRANSFORM]: drawTransform,
 };
 
 const unknownTypeHandler = () => {
   throw new Error('Unknown object type');
+};
+
+const setCameraTransform = ({ context, canvasWidth, canvasHeight, camera }) => {
+  context.setTransform(
+    camera.zoom,
+    0,
+    0,
+    camera.zoom,
+    -camera.position.x * camera.zoom + canvasWidth / 2,
+    -camera.position.y * camera.zoom + canvasHeight / 2
+  );
 };
 
 export const createDrawFunction = ({ customDrawHandlers = {} } = {}) => ({
@@ -36,20 +50,18 @@ export const createDrawFunction = ({ customDrawHandlers = {} } = {}) => ({
 
   context.clearRect(0, 0, canvasWidth, canvasHeight);
   context.save();
-  context.setTransform(
-    camera.zoom,
-    0,
-    0,
-    camera.zoom,
-    -camera.position.x * camera.zoom + canvasWidth / 2,
-    -camera.position.y * camera.zoom + canvasHeight / 2
-  );
-  objects.forEach(({ type, contextProps = {}, ...options }) => {
+  setCameraTransform({ context, canvasWidth, canvasHeight, camera });
+
+  const drawObject = ({ type, contextProps = {}, ...options }) => {
     context.save();
-    const drawObject = drawHandlers[type] || unknownTypeHandler;
+    const drawHandler = drawHandlers[type] || unknownTypeHandler;
     setContextProps(context, contextProps);
-    drawObject(context, options);
+    drawHandler(context, options, drawObject);
     context.restore();
+  };
+
+  objects.forEach(objectToRender => {
+    drawObject(objectToRender);
   });
   context.restore();
 };

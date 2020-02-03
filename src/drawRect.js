@@ -2,7 +2,6 @@ const drawRect = (
   context,
   { x, y, width, height, fill = true, stroke = true, rotation = 0 }
 ) => {
-  context.save();
   context.translate(x, y);
   context.rotate(rotation);
   const relativeX = -width / 2;
@@ -13,7 +12,6 @@ const drawRect = (
   if (stroke) {
     context.strokeRect(relativeX, relativeY, width, height);
   }
-  context.restore();
 };
 
 export default drawRect;
