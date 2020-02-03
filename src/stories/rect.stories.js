@@ -12,8 +12,8 @@ export const basic = () => {
     {
       type: objectTypes.RECT,
       contextProps: { fillStyle: 'red' },
-      x: 50,
-      y: 100,
+      x: 150,
+      y: 200,
       width: 200,
       height: 200,
     },
@@ -31,26 +31,46 @@ export const multiple = () => {
     {
       type: objectTypes.RECT,
       contextProps: { fillStyle: 'red' },
-      x: 50,
-      y: 100,
+      x: 150,
+      y: 200,
       width: 200,
       height: 200,
     },
     {
       type: objectTypes.RECT,
       contextProps: { fillStyle: 'green' },
-      x: 150,
-      y: 200,
+      x: 225,
+      y: 275,
       width: 150,
       height: 150,
     },
     {
       type: objectTypes.RECT,
       contextProps: { fillStyle: 'blue' },
-      x: 200,
-      y: 250,
+      x: 225,
+      y: 275,
       width: 50,
       height: 50,
+    },
+  ];
+
+  draw({ context, canvasWidth, canvasHeight, objects });
+
+  return $canvas;
+};
+
+export const rotated = () => {
+  const { $canvas, context, canvasWidth, canvasHeight } = createCanvasElement();
+
+  const objects = [
+    {
+      type: objectTypes.RECT,
+      contextProps: { fillStyle: 'green' },
+      x: 150,
+      y: 200,
+      width: 200,
+      height: 200,
+      rotation: Math.PI / 6,
     },
   ];
 
