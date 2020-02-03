@@ -1,12 +1,12 @@
 import { fillAndStroke } from './canvasContextUtils';
+import drawMethods from './drawMethods';
 
 const drawPath = (
   context,
   {
     points: [startPoint, ...restPoints],
     closePath = false,
-    fill = true,
-    stroke = true,
+    drawMethod = drawMethods.STROKE,
   }
 ) => {
   context.beginPath();
@@ -15,7 +15,7 @@ const drawPath = (
   if (closePath) {
     context.closePath();
   }
-  fillAndStroke(context, fill, stroke);
+  fillAndStroke(context, drawMethod);
 };
 
 export default drawPath;
