@@ -6,6 +6,8 @@ import drawText from './drawText';
 import drawRect from './drawRect';
 import drawTransform from './drawTransform';
 
+export { default as drawMethods } from './drawMethods';
+
 export const objectTypes = {
   CIRCLE: 'CIRCLE',
   PATH: 'PATH',

@@ -1,4 +1,4 @@
-import { createDrawFunction, objectTypes } from '../index';
+import { createDrawFunction, objectTypes, drawMethods } from '../index';
 import createCanvasElement from './utils/createCanvasElement';
 
 const draw = createDrawFunction();
@@ -24,33 +24,36 @@ export const basic = () => {
   return $canvas;
 };
 
-export const multiple = () => {
+export const fillAndStroke = () => {
   const { $canvas, context, canvasWidth, canvasHeight } = createCanvasElement();
 
   const objects = [
     {
       type: objectTypes.RECT,
-      contextProps: { fillStyle: 'red' },
+      contextProps: { fillStyle: 'gray' },
       x: 150,
-      y: 200,
+      y: 150,
       width: 200,
       height: 200,
+      drawMethod: drawMethods.FILL,
     },
     {
       type: objectTypes.RECT,
-      contextProps: { fillStyle: 'green' },
-      x: 225,
-      y: 275,
-      width: 150,
-      height: 150,
+      contextProps: { strokeStyle: 'blue', lineWidth: 10 },
+      x: 400,
+      y: 150,
+      width: 200,
+      height: 200,
+      drawMethod: drawMethods.STROKE,
     },
     {
       type: objectTypes.RECT,
-      contextProps: { fillStyle: 'blue' },
-      x: 225,
-      y: 275,
-      width: 50,
-      height: 50,
+      contextProps: { fillStyle: 'gray', strokeStyle: 'blue', lineWidth: 10 },
+      x: 275,
+      y: 400,
+      width: 200,
+      height: 200,
+      drawMethod: drawMethods.FILL_AND_STROKE,
     },
   ];
 
@@ -66,8 +69,8 @@ export const rotated = () => {
     {
       type: objectTypes.RECT,
       contextProps: { fillStyle: 'green' },
-      x: 150,
-      y: 200,
+      x: 300,
+      y: 300,
       width: 200,
       height: 200,
       rotation: Math.PI / 6,
