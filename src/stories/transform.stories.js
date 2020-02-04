@@ -11,14 +11,13 @@ export const transform = () => {
   const objects = [
     {
       type: objectTypes.TRANSFORM,
-      contextProps: { fillStyle: 'red' },
       dx: 50,
       dy: 50,
       rotation: Math.PI / 4,
       children: [
         {
           type: objectTypes.RECT,
-          contextProps: { fillStyle: 'red' },
+          contextProps: { fillStyle: 'lightsalmon' },
           x: 200,
           y: 0,
           width: 50,
