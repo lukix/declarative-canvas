@@ -17,7 +17,7 @@ export const objectTypes = {
   TRANSFORM: 'TRANSFORM',
 };
 
-const defaultHandlers = {
+const drawHandlers = {
   [objectTypes.CIRCLE]: drawCircle,
   [objectTypes.PATH]: drawPath,
   [objectTypes.IMAGE]: drawImage,
@@ -41,15 +41,13 @@ const setCameraTransform = ({ context, canvasWidth, canvasHeight, camera }) => {
   );
 };
 
-export const createDrawFunction = ({ customDrawHandlers = {} } = {}) => ({
+export const createDrawFunction = () => ({
   context,
   canvasWidth,
   canvasHeight,
   objects,
   camera = { position: { x: canvasWidth / 2, y: canvasHeight / 2 }, zoom: 1 },
 }) => {
-  const drawHandlers = { ...defaultHandlers, ...customDrawHandlers };
-
   context.clearRect(0, 0, canvasWidth, canvasHeight);
   context.save();
   setCameraTransform({ context, canvasWidth, canvasHeight, camera });
