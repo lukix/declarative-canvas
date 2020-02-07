@@ -6,6 +6,8 @@ jobs:
   include:
     - stage: test
       script: npm run build && npm run prepush
+    - stage: build-storybook
+      script: npm run build-storybook
 deploy:
   skip_cleanup: true
   provider: npm
@@ -13,3 +15,11 @@ deploy:
   api_key: $NPM_TOKEN
   on:
     tags: true
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: true
+  local_dir: ./.out
+  on:
+    branch: master

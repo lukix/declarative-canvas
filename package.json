@@ -19,7 +19,8 @@
     "lint": "eslint ./src/**/*.js",
     "prepush": "yarn run lint",
     "prepublishOnly": "yarn run build && yarn run prepush",
-    "storybook": "start-storybook"
+    "storybook": "start-storybook",
+    "build-storybook": "build-storybook -c .storybook -o .out"
   },
   "devDependencies": {
     "@babel/cli": "7.8.4",
