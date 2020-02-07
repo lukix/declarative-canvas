@@ -6,21 +6,14 @@ jobs:
   include:
     - stage: test
       script: yarn run build && yarn run prepush
-    - stage: build-storybook
+    - stage: storybook
       script: yarn run build-storybook
-deploy:
-  skip_cleanup: true
-  provider: npm
-  email: $NPM_EMAIL
-  api_key: $NPM_TOKEN
-  on:
-    tags: true
-deploy:
-  provider: pages
-  cleanup: true
-  token: $GITHUB_TOKEN
-  keep_history: true
-  local_dir: ./out
-  verbose: true
-  on:
-    branch: master
+      deploy:
+        provider: pages
+        cleanup: false
+        token: $GITHUB_TOKEN
+        keep_history: true
+        local_dir: ./out
+        verbose: true
+        on:
+          branch: master
