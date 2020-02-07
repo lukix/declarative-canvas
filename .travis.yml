@@ -5,9 +5,9 @@ node_js:
 jobs:
   include:
     - stage: test
-      script: npm run build && npm run prepush
+      script: yarn run build && yarn run prepush
     - stage: build-storybook
-      script: npm run build-storybook
+      script: yarn run build-storybook
 deploy:
   skip_cleanup: true
   provider: npm
@@ -17,9 +17,10 @@ deploy:
     tags: true
 deploy:
   provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
+  cleanup: true
+  token: $GITHUB_TOKEN
   keep_history: true
-  local_dir: ./.out
+  local_dir: ./out
+  verbose: true
   on:
     branch: master
