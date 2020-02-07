@@ -15,5 +15,6 @@ jobs:
         keep_history: true
         local_dir: ./out
         verbose: true
+        edge: true
         on:
           branch: master
