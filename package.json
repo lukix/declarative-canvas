@@ -15,9 +15,10 @@
   ],
   "scripts": {
     "dev": "babel --watch src -d lib",
+    "test": "echo 'There are no tests yet'",
     "build": "babel src -d lib",
     "lint": "eslint ./src/**/*.js",
-    "prepush": "yarn run lint",
+    "prepush": "yarn run lint && yarn run test",
     "prepublishOnly": "yarn run build && yarn run prepush",
     "storybook": "start-storybook",
     "build-storybook": "build-storybook -c .storybook -o .out"
