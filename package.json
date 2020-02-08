@@ -1,6 +1,6 @@
 {
   "name": "declarative-canvas",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "lib/index.js",
   "author": "Łukasz Jenczmyk",
   "license": "MIT",
@@ -13,6 +13,10 @@
     "rendering",
     "declarative programming"
   ],
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/lukix/declarative-canvas.git"
+  },
   "scripts": {
     "dev": "babel --watch src -d lib",
     "test": "echo 'There are no tests yet'",
