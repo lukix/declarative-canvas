@@ -1,5 +1,5 @@
 # declarative-canvas
-![npm version](https://badge.fury.io/js/declarative-canvas.svg)
+[![npm version](https://badge.fury.io/js/declarative-canvas.svg)](https://www.npmjs.com/package/declarative-canvas)
 
 JavaScript library which lets you draw on HTML5 Canvas in a declarative way.
 

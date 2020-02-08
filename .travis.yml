@@ -18,11 +18,12 @@ jobs:
         edge: true
         on:
           branch: master
-deploy:
-  cleanup: false
-  edge: true
-  provider: npm
-  email: $NPM_EMAIL
-  api_key: $NPM_TOKEN
-  on:
-    tags: true
+    - stage: deploy
+      deploy:
+        cleanup: false
+        edge: true
+        provider: npm
+        email: $NPM_EMAIL
+        api_key: $NPM_TOKEN
+        on:
+          tags: true
