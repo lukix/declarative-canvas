@@ -1,9 +1,7 @@
 import drawMethods from './drawMethods';
 
-export const setContextProps = (context, contextProps = {}) => {
-  Object.entries(contextProps).forEach(([key, value]) => {
-    context[key] = value;
-  });
+export const setContextProps = (context, contextProps) => {
+  Object.assign(context, contextProps);
 };
 
 export const fillAndStroke = (context, drawMethod) => {

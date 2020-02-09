@@ -14,12 +14,12 @@
     "declarative programming"
   ],
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/lukix/declarative-canvas.git"
+    "type": "git",
+    "url": "https://github.com/lukix/declarative-canvas.git"
   },
   "scripts": {
     "dev": "babel --watch src -d lib",
-    "test": "echo 'There are no tests yet'",
+    "test": "jest",
     "build": "babel src -d lib",
     "lint": "eslint ./src/**/*.js",
     "prepush": "yarn run lint && yarn run test",
@@ -35,7 +35,9 @@
     "@storybook/html": "^5.3.10",
     "babel-loader": "^8.0.6",
     "eslint": "6.8.0",
+    "eslint-plugin-jest": "^23.7.0",
     "husky": "4.2.1",
+    "jest": "^25.1.0",
     "prettier": "1.19.1"
   },
   "husky": {
