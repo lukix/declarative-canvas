@@ -10,7 +10,6 @@ const drawCircle = (
   const startAngle = 0;
   const endAngle = Math.PI * 2;
   context.ellipse(x, y, radius, radius, rotation, startAngle, endAngle);
-  context.closePath();
   fillAndStroke(context, drawMethod);
 };
 
