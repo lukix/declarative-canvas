@@ -1,5 +1,5 @@
 import drawText from '../drawText';
-import drawMethods from '../drawMethods';
+import drawMethods from '../../drawMethods';
 
 const getContext = () => ({
   fillText: jest.fn(),

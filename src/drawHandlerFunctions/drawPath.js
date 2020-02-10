@@ -1,5 +1,5 @@
-import { fillAndStroke } from './canvasContextUtils';
-import drawMethods from './drawMethods';
+import { fillAndStroke } from '../canvasContextUtils';
+import drawMethods from '../drawMethods';
 
 const drawPath = (
   context,

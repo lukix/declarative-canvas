@@ -1,10 +1,12 @@
 import { setContextProps } from './canvasContextUtils';
-import drawCircle from './drawCircle';
-import drawPath from './drawPath';
-import drawImage from './drawImage';
-import drawText from './drawText';
-import drawRect from './drawRect';
-import drawTransform from './drawTransform';
+import {
+  drawCircle,
+  drawImage,
+  drawPath,
+  drawRect,
+  drawText,
+  drawTransform,
+} from './drawHandlerFunctions';
 
 export { default as drawMethods } from './drawMethods';
 

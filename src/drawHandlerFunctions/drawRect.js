@@ -1,4 +1,4 @@
-import drawMethods from './drawMethods';
+import drawMethods from '../drawMethods';
 
 const drawRect = (
   context,
