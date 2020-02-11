@@ -1,4 +1,4 @@
-import drawMethods from './drawMethods';
+import drawMethods from '../drawMethods';
 
 const drawText = (context, { text, x, y, drawMethod = drawMethods.FILL }) => {
   if (

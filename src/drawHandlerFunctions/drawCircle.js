@@ -1,5 +1,5 @@
-import { fillAndStroke } from './canvasContextUtils';
-import drawMethods from './drawMethods';
+import { fillAndStroke } from '../canvasContextUtils';
+import drawMethods from '../drawMethods';
 
 const drawCircle = (
   context,
@@ -10,7 +10,6 @@ const drawCircle = (
   const startAngle = 0;
   const endAngle = Math.PI * 2;
   context.ellipse(x, y, radius, radius, rotation, startAngle, endAngle);
-  context.closePath();
   fillAndStroke(context, drawMethod);
 };
 
