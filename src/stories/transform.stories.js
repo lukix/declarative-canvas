@@ -6,7 +6,7 @@ const draw = createDrawFunction();
 export default { title: 'Transform' };
 
 export const transform = () => {
-  const { $canvas, context, canvasWidth, canvasHeight } = createCanvasElement();
+  const { $canvas, context } = createCanvasElement();
 
   const objects = [
     {
@@ -45,7 +45,7 @@ export const transform = () => {
     },
   ];
 
-  draw({ context, canvasWidth, canvasHeight, objects });
+  draw({ context, objects });
 
   return $canvas;
 };

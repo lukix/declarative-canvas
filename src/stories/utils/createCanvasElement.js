@@ -5,9 +5,8 @@ const createCanvasElement = () => {
   $canvas.style.border = '1px solid black';
 
   const context = $canvas.getContext('2d');
-  const { width: canvasWidth, height: canvasHeight } = $canvas;
 
-  return { $canvas, context, canvasWidth, canvasHeight };
+  return { $canvas, context };
 };
 
 export default createCanvasElement;

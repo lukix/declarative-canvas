@@ -6,7 +6,7 @@ const draw = createDrawFunction();
 export default { title: 'Rect' };
 
 export const basic = () => {
-  const { $canvas, context, canvasWidth, canvasHeight } = createCanvasElement();
+  const { $canvas, context } = createCanvasElement();
 
   const objects = [
     {
@@ -19,13 +19,13 @@ export const basic = () => {
     },
   ];
 
-  draw({ context, canvasWidth, canvasHeight, objects });
+  draw({ context, objects });
 
   return $canvas;
 };
 
 export const fillAndStroke = () => {
-  const { $canvas, context, canvasWidth, canvasHeight } = createCanvasElement();
+  const { $canvas, context } = createCanvasElement();
 
   const objects = [
     {
@@ -61,13 +61,13 @@ export const fillAndStroke = () => {
     },
   ];
 
-  draw({ context, canvasWidth, canvasHeight, objects });
+  draw({ context, objects });
 
   return $canvas;
 };
 
 export const rotated = () => {
-  const { $canvas, context, canvasWidth, canvasHeight } = createCanvasElement();
+  const { $canvas, context } = createCanvasElement();
 
   const objects = [
     {
@@ -81,7 +81,7 @@ export const rotated = () => {
     },
   ];
 
-  draw({ context, canvasWidth, canvasHeight, objects });
+  draw({ context, objects });
 
   return $canvas;
 };

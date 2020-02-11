@@ -6,7 +6,7 @@ const draw = createDrawFunction();
 export default { title: 'Path' };
 
 export const fillAndStroke = () => {
-  const { $canvas, context, canvasWidth, canvasHeight } = createCanvasElement();
+  const { $canvas, context } = createCanvasElement();
 
   const objects = [
     {
@@ -57,7 +57,7 @@ export const fillAndStroke = () => {
     },
   ];
 
-  draw({ context, canvasWidth, canvasHeight, objects });
+  draw({ context, objects });
 
   return $canvas;
 };

@@ -23,12 +23,7 @@ const objectsToRender = [
 
 const draw = createDrawFunction();
 
-draw({
-  context,
-  canvasWidth: canvas.width,
-  canvasHeight: canvas.height,
-  objects: objectsToRender,
-});
+draw({ context, objects: objectsToRender });
 ```
 
 ## Storybook
@@ -46,9 +41,9 @@ A factory function that takes no arguments and returns a function with the follo
 ```ts
 ({
   context: CanvasRenderingContext2D,
-  canvasWidth: number,
-  canvasHeight: number,
   objects: Array<object>,
+  canvasWidth = context.canvas && context.canvas.width,
+  canvasHeight = context.canvas && context.canvas.width,
   camera = { position: { x: canvasWidth / 2, y: canvasHeight / 2 }, zoom: 1 },
 }) => void
 ```

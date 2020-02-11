@@ -6,7 +6,7 @@ const draw = createDrawFunction();
 export default { title: 'Animations' };
 
 export const Animation = () => {
-  const { $canvas, context, canvasWidth, canvasHeight } = createCanvasElement();
+  const { $canvas, context } = createCanvasElement();
 
   let timeElapsed = 0;
 
@@ -32,7 +32,7 @@ export const Animation = () => {
       },
     ];
 
-    draw({ context, canvasWidth, canvasHeight, objects });
+    draw({ context, objects });
 
     requestAnimationFrame(renderFrame);
   };

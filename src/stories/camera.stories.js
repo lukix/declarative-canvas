@@ -23,7 +23,7 @@ const getPointObjects = ({ x, y, name }) => [
 ];
 
 export const camera = () => {
-  const { $canvas, context, canvasWidth, canvasHeight } = createCanvasElement();
+  const { $canvas, context } = createCanvasElement();
 
   const objects = [
     ...getPointObjects({ x: -200, y: -200, name: 'A' }),
@@ -35,7 +35,7 @@ export const camera = () => {
 
   const camera = { position: { x: 0, y: 0 }, zoom: 0.6 };
 
-  draw({ context, canvasWidth, canvasHeight, objects, camera });
+  draw({ context, objects, camera });
 
   return $canvas;
 };

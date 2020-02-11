@@ -37,9 +37,9 @@ const drawObjectFactory = context => {
 
 const createDrawFunction = () => ({
   context,
-  canvasWidth,
-  canvasHeight,
   objects,
+  canvasWidth = context.canvas && context.canvas.width,
+  canvasHeight = context.canvas && context.canvas.height,
   camera = { position: { x: canvasWidth / 2, y: canvasHeight / 2 }, zoom: 1 },
 }) => {
   context.clearRect(0, 0, canvasWidth, canvasHeight);

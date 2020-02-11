@@ -18,7 +18,7 @@ const createImage = src => {
 export default { title: 'Image' };
 
 export const fillAndStroke = () => {
-  const { $canvas, context, canvasWidth, canvasHeight } = createCanvasElement();
+  const { $canvas, context } = createCanvasElement();
 
   createImage(jsLogoPath).then(jsLogo => {
     const objects = [
@@ -41,7 +41,7 @@ export const fillAndStroke = () => {
       },
     ];
 
-    draw({ context, canvasWidth, canvasHeight, objects });
+    draw({ context, objects });
   });
 
   return $canvas;
