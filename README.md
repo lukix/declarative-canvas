@@ -36,7 +36,13 @@ More examples can be found in the [storybook](https://lukix.github.io/declarativ
 - `drawMethods` - dictionary object of available drawing methods.
 
 ### createDrawFunction
-A factory function that takes no arguments and returns a function with the following signature:
+A factory function that takes one optional argument:
+```ts
+(customDrawHandlers = {}) => Function
+```
+`customDrawHandlers` argument is described in [Custom draw handlers](#custom-draw-handlers) chapter.
+
+A function returned from this factory has the following signature:
 
 ```ts
 ({
@@ -197,3 +203,16 @@ Before drawing the shape all values of `contextProps` object will be assigned
 to [Canvas Rendering Context](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D).
 Some example values that you can use: `fillStyle`, `strokeStyle`, `lineWidth`, `filter` and so on.
 After drawing the shape, context properties will be restored back to their orginal values.
+
+## Custom draw handlers
+If you want to expand the capabilities of `declarative-canvas` to support more object types,
+you can specify custom draw handlers which will be used to draw objects with specified object type.
+Draw handler is a function with the following signature:
+```ts
+(context, options, drawObject) => void
+```
+To see examples of draw handlers, you can check out default draw handlers in [src/drawHandlerFunctions](./src/drawHandlerFunctions) directory.
+
+Custom handlers can be passed as a `customDrawHandlers` argument to `createDrawFunction`.
+`customDrawHandlers` should be an object, where keys represent object types and values represent custom handlers.
+
