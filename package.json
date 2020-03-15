@@ -1,6 +1,6 @@
 {
   "name": "declarative-canvas",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "main": "lib/index.js",
   "author": "Łukasz Jenczmyk",
   "license": "MIT",
@@ -29,14 +29,14 @@
   },
   "devDependencies": {
     "@babel/cli": "7.8.4",
-    "@babel/core": "7.8.4",
+    "@babel/core": "7.8.7",
     "@babel/plugin-proposal-object-rest-spread": "7.8.3",
     "@babel/plugin-transform-modules-commonjs": "7.8.3",
-    "@storybook/html": "^5.3.12",
+    "@storybook/html": "^5.3.17",
     "babel-loader": "^8.0.6",
     "eslint": "6.8.0",
-    "eslint-plugin-jest": "^23.7.0",
-    "husky": "4.2.1",
+    "eslint-plugin-jest": "^23.8.2",
+    "husky": "4.2.3",
     "jest": "^25.1.0",
     "prettier": "1.19.1"
   },

@@ -10,7 +10,7 @@ import {
 } from './drawHandlerFunctions';
 import objectTypes from './objectTypes';
 
-const drawHandlers = {
+const defaultDrawHandlers = {
   [objectTypes.CIRCLE]: drawCircle,
   [objectTypes.PATH]: drawPath,
   [objectTypes.IMAGE]: drawImage,
@@ -23,7 +23,7 @@ const unknownTypeHandler = () => {
   throw new Error('Unknown object type');
 };
 
-const drawObjectFactory = context => {
+const drawObjectFactory = (context, drawHandlers) => {
   const drawObject = ({ type, contextProps = {}, ...options }) => {
     context.save();
     const drawHandler = drawHandlers[type] || unknownTypeHandler;
@@ -35,21 +35,24 @@ const drawObjectFactory = context => {
   return drawObject;
 };
 
-const createDrawFunction = () => ({
-  context,
-  objects,
-  canvasWidth = context.canvas && context.canvas.width,
-  canvasHeight = context.canvas && context.canvas.height,
-  camera = { position: { x: canvasWidth / 2, y: canvasHeight / 2 }, zoom: 1 },
-}) => {
-  context.clearRect(0, 0, canvasWidth, canvasHeight);
-  context.save();
-  setCameraTransform({ context, canvasWidth, canvasHeight, camera });
-  const drawObject = drawObjectFactory(context);
-  objects.forEach(objectToRender => {
-    drawObject(objectToRender);
-  });
-  context.restore();
+const createDrawFunction = (customDrawHandlers = {}) => {
+  const drawHandlers = { ...defaultDrawHandlers, ...customDrawHandlers };
+  return ({
+    context,
+    objects,
+    canvasWidth = context.canvas && context.canvas.width,
+    canvasHeight = context.canvas && context.canvas.height,
+    camera = { position: { x: canvasWidth / 2, y: canvasHeight / 2 }, zoom: 1 },
+  }) => {
+    context.clearRect(0, 0, canvasWidth, canvasHeight);
+    context.save();
+    setCameraTransform({ context, canvasWidth, canvasHeight, camera });
+    const drawObject = drawObjectFactory(context, drawHandlers);
+    objects.forEach(objectToRender => {
+      drawObject(objectToRender);
+    });
+    context.restore();
+  };
 };
 
 export default createDrawFunction;
