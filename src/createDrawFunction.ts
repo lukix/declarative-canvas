@@ -25,7 +25,7 @@ const unknownTypeHandler = () => {
 
 type DrawHandlerType = (
   context: CanvasRenderingContext2D,
-  options: object,
+  options: any,
   drawObject?: object
 ) => void;
 type DrawHandlersType = { [key: string]: DrawHandlerType };
@@ -55,7 +55,7 @@ type DrawFunctionPropsType = {
 
 type DrawFunctionType = (props: DrawFunctionPropsType) => void;
 type CreateDrawFunctionType = (
-  customDrawHandlers: DrawHandlersType
+  customDrawHandlers?: DrawHandlersType
 ) => DrawFunctionType;
 
 const createDrawFunction: CreateDrawFunctionType = (

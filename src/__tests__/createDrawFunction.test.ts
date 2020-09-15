@@ -1,13 +1,18 @@
 import { createDrawFunction } from '../index';
 
-const getContext = () => ({
-  fill: jest.fn(),
-  stroke: jest.fn(),
-  clearRect: () => {},
-  save: () => {},
-  restore: () => {},
-  setTransform: () => {},
-});
+const getContext = () => {
+  const context = {
+    fill: jest.fn(),
+    stroke: jest.fn(),
+    clearRect: () => {},
+    fillRect: () => {},
+    save: () => {},
+    restore: () => {},
+    setTransform: () => {},
+  };
+
+  return (context as unknown) as CanvasRenderingContext2D;
+};
 
 describe('createDrawFunction', () => {
   it('should throw an error when passing object with unknown type', () => {
@@ -26,7 +31,7 @@ describe('createDrawFunction', () => {
   it('should call specified custom draw handler', () => {
     // given
     const draw = createDrawFunction({
-      CUSTOM_TYPE: (context, { x, y }) => context.drawRect(x, y),
+      CUSTOM_TYPE: (context, { x, y }) => context.fillRect(x, y, 20, 20),
     });
     const objects = [{ type: 'CUSTOM_TYPE', x: 5, y: 10 }];
     const drawRectMock = jest.fn();
