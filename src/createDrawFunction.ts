@@ -23,7 +23,17 @@ const unknownTypeHandler = () => {
   throw new Error('Unknown object type');
 };
 
-const drawObjectFactory = (context, drawHandlers) => {
+type DrawHandlerType = (
+  context: CanvasRenderingContext2D,
+  options: object,
+  drawObject?: object
+) => void;
+type DrawHandlersType = { [key: string]: DrawHandlerType };
+
+const drawObjectFactory = (
+  context: CanvasRenderingContext2D,
+  drawHandlers: DrawHandlersType
+) => {
   const drawObject = ({ type, contextProps = {}, ...options }) => {
     context.save();
     const drawHandler = drawHandlers[type] || unknownTypeHandler;
@@ -35,13 +45,28 @@ const drawObjectFactory = (context, drawHandlers) => {
   return drawObject;
 };
 
-const createDrawFunction = (customDrawHandlers = {}) => {
+type DrawFunctionPropsType = {
+  context: CanvasRenderingContext2D;
+  objects: Array<any>;
+  canvasWidth?: number;
+  canvasHeight?: number;
+  camera?: Camera;
+};
+
+type DrawFunctionType = (props: DrawFunctionPropsType) => void;
+type CreateDrawFunctionType = (
+  customDrawHandlers: DrawHandlersType
+) => DrawFunctionType;
+
+const createDrawFunction: CreateDrawFunctionType = (
+  customDrawHandlers = {}
+) => {
   const drawHandlers = { ...defaultDrawHandlers, ...customDrawHandlers };
-  return ({
+  const drawFunction: DrawFunctionType = ({
     context,
     objects,
-    canvasWidth = context.canvas && context.canvas.width,
-    canvasHeight = context.canvas && context.canvas.height,
+    canvasWidth = context.canvas?.width,
+    canvasHeight = context.canvas?.height,
     camera = { position: { x: canvasWidth / 2, y: canvasHeight / 2 }, zoom: 1 },
   }) => {
     context.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -53,6 +78,7 @@ const createDrawFunction = (customDrawHandlers = {}) => {
     });
     context.restore();
   };
+  return drawFunction;
 };
 
 export default createDrawFunction;

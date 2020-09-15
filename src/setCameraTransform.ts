@@ -1,4 +1,14 @@
-const setCameraTransform = ({ context, canvasWidth, canvasHeight, camera }) => {
+const setCameraTransform = ({
+  context,
+  canvasWidth,
+  canvasHeight,
+  camera,
+}: {
+  context: CanvasRenderingContext2D;
+  canvasWidth: number;
+  canvasHeight: number;
+  camera: Camera;
+}): void => {
   context.setTransform(
     camera.zoom,
     0,
