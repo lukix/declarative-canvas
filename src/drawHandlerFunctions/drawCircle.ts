@@ -2,9 +2,19 @@ import { fillAndStroke } from '../canvasContextUtils';
 import drawMethods from '../drawMethods';
 
 const drawCircle = (
-  context,
-  { x, y, radius, drawMethod = drawMethods.FILL }
-) => {
+  context: CanvasRenderingContext2D,
+  {
+    x,
+    y,
+    radius,
+    drawMethod = drawMethods.FILL,
+  }: {
+    x: number;
+    y: number;
+    radius: number;
+    drawMethod?: string;
+  }
+): void => {
   context.beginPath();
   const rotation = 0;
   const startAngle = 0;
