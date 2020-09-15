@@ -10,7 +10,7 @@ const drawPath = (
   }: {
     points: Array<{ x: number; y: number }>;
     closePath?: boolean;
-    drawMethod?: string;
+    drawMethod?: drawMethods;
   }
 ): void => {
   context.beginPath();

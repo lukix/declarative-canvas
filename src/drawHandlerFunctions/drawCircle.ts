@@ -12,7 +12,7 @@ const drawCircle = (
     x: number;
     y: number;
     radius: number;
-    drawMethod?: string;
+    drawMethod?: drawMethods;
   }
 ): void => {
   context.beginPath();

@@ -11,7 +11,7 @@ const drawText = (
     text: string;
     x: number;
     y: number;
-    drawMethod: string;
+    drawMethod: drawMethods;
   }
 ): void => {
   if (

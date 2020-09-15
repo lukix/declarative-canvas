@@ -17,7 +17,7 @@ const drawTransform = (
     skewX?: number;
     skewY?: number;
     rotation?: number;
-    children;
+    children: Array<any>;
   },
   drawObject: Function
 ): void => {
