@@ -1,4 +1,4 @@
-const drawImage = (
+const drawImage: DrawHandlerType = (
   context: CanvasRenderingContext2D,
   {
     image,

@@ -1,4 +1,4 @@
-const drawTransform = (
+const drawTransform: DrawHandlerType = (
   context: CanvasRenderingContext2D,
   {
     dx = 0,
@@ -19,7 +19,7 @@ const drawTransform = (
     rotation?: number;
     children: Array<any>;
   },
-  drawObject: Function
+  drawObject: DrawObjectType
 ): void => {
   context.setTransform(scaleX, skewY, skewX, scaleY, dx, dy);
   context.rotate(rotation);

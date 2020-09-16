@@ -1,7 +1,7 @@
 import { fillAndStroke } from '../canvasContextUtils';
 import drawMethods from '../drawMethods';
 
-const drawCircle = (
+const drawCircle: DrawHandlerType = (
   context: CanvasRenderingContext2D,
   {
     x,

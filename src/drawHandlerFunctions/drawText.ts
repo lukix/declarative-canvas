@@ -1,6 +1,6 @@
 import drawMethods from '../drawMethods';
 
-const drawText = (
+const drawText: DrawHandlerType = (
   context: CanvasRenderingContext2D,
   {
     text,

@@ -23,18 +23,17 @@ const unknownTypeHandler = () => {
   throw new Error('Unknown object type');
 };
 
-type DrawHandlerType = (
-  context: CanvasRenderingContext2D,
-  options: any,
-  drawObject?: object
-) => void;
 type DrawHandlersType = { [key: string]: DrawHandlerType };
 
 const drawObjectFactory = (
   context: CanvasRenderingContext2D,
   drawHandlers: DrawHandlersType
 ) => {
-  const drawObject = ({ type, contextProps = {}, ...options }) => {
+  const drawObject: DrawObjectType = ({
+    type,
+    contextProps = {},
+    ...options
+  }) => {
     context.save();
     const drawHandler = drawHandlers[type] || unknownTypeHandler;
     setContextProps(context, contextProps);
