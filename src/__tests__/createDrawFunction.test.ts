@@ -5,7 +5,6 @@ const getContext = () => {
     fill: jest.fn(),
     stroke: jest.fn(),
     clearRect: () => {},
-    fillRect: () => {},
     save: () => {},
     restore: () => {},
     setTransform: () => {},
@@ -35,13 +34,13 @@ describe('createDrawFunction', () => {
     });
     const objects = [{ type: 'CUSTOM_TYPE', x: 5, y: 10 }];
     const drawRectMock = jest.fn();
-    const context = { ...getContext(), drawRect: drawRectMock };
+    const context = { ...getContext(), fillRect: drawRectMock };
 
     // when
     draw({ context, objects });
 
     // then
     expect(drawRectMock).toHaveBeenCalledTimes(1);
-    expect(drawRectMock).toHaveBeenCalledWith(5, 10);
+    expect(drawRectMock).toHaveBeenCalledWith(5, 10, 20, 20);
   });
 });
