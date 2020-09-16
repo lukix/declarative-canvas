@@ -4,7 +4,7 @@ import jsLogoPath from './resources/js-logo.png';
 
 const draw = createDrawFunction();
 
-const createImage = src => {
+const createImage = (src: string) => {
   const image = new Image();
   image.src = src;
   return new Promise((res, rej) => {
@@ -19,6 +19,10 @@ export default { title: 'Image' };
 
 export const fillAndStroke = () => {
   const { $canvas, context } = createCanvasElement();
+
+  if (!context) {
+    return 'Context identifier is not supported';
+  }
 
   createImage(jsLogoPath).then(jsLogo => {
     const objects = [

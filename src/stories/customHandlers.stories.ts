@@ -6,8 +6,15 @@ export default { title: 'Custom Draw Handlers' };
 export const customHandlers = () => {
   const { $canvas, context } = createCanvasElement();
 
+  if (!context) {
+    return 'Context identifier is not supported';
+  }
+
   const customDrawHandlers = {
-    CUSTOM_POINT: (context, { x, y }) => {
+    CUSTOM_POINT: (
+      context: CanvasRenderingContext2D,
+      { x, y }: { x: number; y: number }
+    ) => {
       context.beginPath();
       const rotation = 0;
       const startAngle = 0;

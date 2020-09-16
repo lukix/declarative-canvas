@@ -8,6 +8,10 @@ export default { title: 'Text' };
 export const text = () => {
   const { $canvas, context } = createCanvasElement();
 
+  if (!context) {
+    return 'Context identifier is not supported';
+  }
+
   const objects = [
     {
       type: objectTypes.TEXT,

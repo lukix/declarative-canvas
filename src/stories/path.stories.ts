@@ -8,6 +8,10 @@ export default { title: 'Path' };
 export const fillAndStroke = () => {
   const { $canvas, context } = createCanvasElement();
 
+  if (!context) {
+    return 'Context identifier is not supported';
+  }
+
   const objects = [
     {
       type: objectTypes.PATH,

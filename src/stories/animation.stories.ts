@@ -8,6 +8,10 @@ export default { title: 'Animations' };
 export const Animation = () => {
   const { $canvas, context } = createCanvasElement();
 
+  if (!context) {
+    return 'Context identifier is not supported';
+  }
+
   let timeElapsed = 0;
 
   const renderFrame = () => {

@@ -8,6 +8,10 @@ export default { title: 'Transform' };
 export const transform = () => {
   const { $canvas, context } = createCanvasElement();
 
+  if (!context) {
+    return 'Context identifier is not supported';
+  }
+
   const objects = [
     {
       type: objectTypes.TRANSFORM,
