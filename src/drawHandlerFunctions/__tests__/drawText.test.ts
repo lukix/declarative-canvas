@@ -1,10 +1,18 @@
 import drawText from '../drawText';
 import drawMethods from '../../drawMethods';
 
-const getContext = () => ({
-  fillText: jest.fn(),
-  strokeText: jest.fn(),
-});
+const getContext = () => {
+  const context = {
+    translate: () => {},
+    rotate: () => {},
+    fillText: jest.fn(),
+    strokeText: jest.fn(),
+  };
+
+  return (context as unknown) as CanvasRenderingContext2D;
+};
+
+const drawObjectMock = () => {};
 
 describe('drawText', () => {
   it('should call fillText when draw method is FILL', () => {
@@ -18,7 +26,7 @@ describe('drawText', () => {
     };
 
     // when
-    drawText(context, options);
+    drawText(context, options, drawObjectMock);
 
     // then
     expect(context.strokeText).toHaveBeenCalledTimes(0);
@@ -42,7 +50,7 @@ describe('drawText', () => {
     };
 
     // when
-    drawText(context, options);
+    drawText(context, options, drawObjectMock);
 
     // then
     expect(context.strokeText).toHaveBeenCalledTimes(1);
@@ -66,7 +74,7 @@ describe('drawText', () => {
     };
 
     // when
-    drawText(context, options);
+    drawText(context, options, drawObjectMock);
 
     // then
     expect(context.strokeText).toHaveBeenCalledTimes(1);

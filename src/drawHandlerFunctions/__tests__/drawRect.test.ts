@@ -1,12 +1,18 @@
 import drawRect from '../drawRect';
 import drawMethods from '../../drawMethods';
 
-const getContext = () => ({
-  translate: () => {},
-  rotate: () => {},
-  fillRect: jest.fn(),
-  strokeRect: jest.fn(),
-});
+const getContext = () => {
+  const context = {
+    translate: () => {},
+    rotate: () => {},
+    fillRect: jest.fn(),
+    strokeRect: jest.fn(),
+  };
+
+  return (context as unknown) as CanvasRenderingContext2D;
+};
+
+const drawObjectMock = () => {};
 
 describe('drawRect', () => {
   it('should call fillRect when draw method is FILL', () => {
@@ -21,7 +27,7 @@ describe('drawRect', () => {
     };
 
     // when
-    drawRect(context, options);
+    drawRect(context, options, drawObjectMock);
 
     // then
     expect(context.strokeRect).toHaveBeenCalledTimes(0);
@@ -40,7 +46,7 @@ describe('drawRect', () => {
     };
 
     // when
-    drawRect(context, options);
+    drawRect(context, options, drawObjectMock);
 
     // then
     expect(context.strokeRect).toHaveBeenCalledTimes(1);
@@ -59,7 +65,7 @@ describe('drawRect', () => {
     };
 
     // when
-    drawRect(context, options);
+    drawRect(context, options, drawObjectMock);
 
     // then
     expect(context.strokeRect).toHaveBeenCalledTimes(1);
