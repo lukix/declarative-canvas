@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
       "outDir": "./lib",
-      "allowJs": true,
+      "allowJs": false,
       "checkJs": false,
       "module": "commonjs",
       "target": "es5",
