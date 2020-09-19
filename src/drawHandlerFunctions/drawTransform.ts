@@ -17,7 +17,7 @@ const drawTransform: DrawHandlerType = (
     skewX?: number;
     skewY?: number;
     rotation?: number;
-    children: Array<any>;
+    children: Array<DrawingObjectType>;
   },
   drawObject: DrawObjectType
 ): void => {

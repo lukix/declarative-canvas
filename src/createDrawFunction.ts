@@ -20,7 +20,7 @@ const defaultDrawHandlers = {
 };
 
 const unknownTypeHandler = () => {
-  throw new Error('Unknown object type');
+  throw new Error('Unknown object type passed to declarative-canvas');
 };
 
 type DrawHandlersType = { [key: string]: DrawHandlerType };
@@ -46,7 +46,10 @@ const drawObjectFactory = (
 
 type DrawFunctionPropsType = {
   context: CanvasRenderingContext2D;
-  objects: Array<any>;
+  objects: Array<{
+    type: string;
+    contextProps?: Partial<CanvasRenderingContext2D>;
+  }>;
   canvasWidth?: number;
   canvasHeight?: number;
   camera?: Camera;
