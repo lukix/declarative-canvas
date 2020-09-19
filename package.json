@@ -20,6 +20,7 @@
   "scripts": {
     "dev": "tsc --watch",
     "test": "jest",
+    "test:watch": "jest --watch",
     "build": "tsc",
     "lint": "eslint ./src/**/*.js",
     "prepush": "yarn run lint && yarn run test",
