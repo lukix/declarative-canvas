@@ -1,3 +1,5 @@
+import { Camera } from './types';
+
 const setCameraTransform = ({
   context,
   canvasWidth,

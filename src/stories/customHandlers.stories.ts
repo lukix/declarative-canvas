@@ -1,4 +1,4 @@
-import { createDrawFunction } from '../index';
+import { createDrawFunction, objectTypes } from '../index';
 import createCanvasElement from './utils/createCanvasElement';
 
 export default { title: 'Custom Draw Handlers' };
@@ -10,8 +10,12 @@ export const customHandlers = () => {
     return 'Context identifier is not supported';
   }
 
+  enum CustomTypes {
+    CUSTOM_POINT = 'CUSTOM_POINT',
+  }
+
   const customDrawHandlers = {
-    CUSTOM_POINT: (
+    [CustomTypes.CUSTOM_POINT]: (
       context: CanvasRenderingContext2D,
       { x, y }: { x: number; y: number }
     ) => {
@@ -27,9 +31,9 @@ export const customHandlers = () => {
   const draw = createDrawFunction(customDrawHandlers);
 
   const objects = [
-    { type: 'CUSTOM_POINT', x: 50, y: 50 },
-    { type: 'CUSTOM_POINT', x: 90, y: 90 },
-    { type: 'CUSTOM_POINT', x: 40, y: 120 },
+    { type: CustomTypes.CUSTOM_POINT, x: 50, y: 50 },
+    { type: CustomTypes.CUSTOM_POINT, x: 90, y: 90 },
+    { type: CustomTypes.CUSTOM_POINT, x: 40, y: 120 },
   ];
 
   draw({ context, objects });

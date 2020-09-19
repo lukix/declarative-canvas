@@ -9,6 +9,7 @@ import {
   drawTransform,
 } from './drawHandlerFunctions';
 import objectTypes from './objectTypes';
+import { Camera, DrawingObject, DrawHandler } from './types';
 
 const defaultDrawHandlers = {
   [objectTypes.CIRCLE]: drawCircle,
@@ -23,17 +24,19 @@ const unknownTypeHandler = () => {
   throw new Error('Unknown object type passed to declarative-canvas');
 };
 
-type DrawHandlersDictionary = { [key: string]: DrawHandler };
+type DrawHandlersDictionary<T extends string | number | symbol> = Record<
+  T,
+  DrawHandler<T>
+>;
 
-function drawObjectFactory(
-  context: CanvasRenderingContext2D,
-  drawHandlers: DrawHandlersDictionary
-) {
+function drawObjectFactory<
+  Handlers extends DrawHandlersDictionary<keyof Handlers>
+>(context: CanvasRenderingContext2D, drawHandlers: Handlers) {
   function drawObject({
     type,
     contextProps = {},
     ...options
-  }: DrawingObject): void {
+  }: DrawingObject<keyof Handlers>): void {
     context.save();
     const drawHandler = drawHandlers[type] || unknownTypeHandler;
     setContextProps(context, contextProps);
@@ -44,10 +47,10 @@ function drawObjectFactory(
   return drawObject;
 }
 
-type DrawFunctionProps = {
+type DrawFunctionProps<Handlers> = {
   context: CanvasRenderingContext2D;
   objects: Array<{
-    type: string;
+    type: keyof Handlers;
     contextProps?: Partial<CanvasRenderingContext2D>;
   }>;
   canvasWidth?: number;
@@ -55,12 +58,9 @@ type DrawFunctionProps = {
   camera?: Camera;
 };
 
-type DrawFunction = (props: DrawFunctionProps) => void;
-type CreateDrawFunction = (
-  customDrawHandlers?: DrawHandlersDictionary
-) => DrawFunction;
-
-const createDrawFunction: CreateDrawFunction = (customDrawHandlers = {}) => {
+function createDrawFunction<CH extends DrawHandlersDictionary<keyof CH>>(
+  customDrawHandlers: CH = {} as CH
+) {
   const drawHandlers = { ...defaultDrawHandlers, ...customDrawHandlers };
   function drawFunction({
     context,
@@ -68,7 +68,7 @@ const createDrawFunction: CreateDrawFunction = (customDrawHandlers = {}) => {
     canvasWidth = context.canvas?.width,
     canvasHeight = context.canvas?.height,
     camera = { position: { x: canvasWidth / 2, y: canvasHeight / 2 }, zoom: 1 },
-  }: DrawFunctionProps): void {
+  }: DrawFunctionProps<typeof defaultDrawHandlers & CH>): void {
     context.clearRect(0, 0, canvasWidth, canvasHeight);
     context.save();
     setCameraTransform({ context, canvasWidth, canvasHeight, camera });
@@ -79,6 +79,6 @@ const createDrawFunction: CreateDrawFunction = (customDrawHandlers = {}) => {
     context.restore();
   }
   return drawFunction;
-};
+}
 
 export default createDrawFunction;

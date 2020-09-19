@@ -1,4 +1,4 @@
-import { createDrawFunction } from '../index';
+import { createDrawFunction, objectTypes } from '../index';
 
 const getContext = () => {
   const context = {
@@ -17,7 +17,11 @@ describe('createDrawFunction', () => {
   it('should throw an error when passing object with unknown type', () => {
     // given
     const draw = createDrawFunction();
-    const objects = [{ type: 'UNKNOWN_TYPE' }];
+
+    // incorrect assertion in order to test a case when someone is not using TypeScript
+    const UNKNOWN_TYPE = 'UNKNOWN_TYPE' as objectTypes;
+
+    const objects = [{ type: UNKNOWN_TYPE }];
     const context = getContext();
 
     // when
@@ -29,10 +33,13 @@ describe('createDrawFunction', () => {
 
   it('should call specified custom draw handler', () => {
     // given
+    enum CustomTypes {
+      CUSTOM_TYPE = 'CUSTOM_TYPE',
+    }
     const draw = createDrawFunction({
       CUSTOM_TYPE: (context, { x, y }) => context.fillRect(x, y, 20, 20),
     });
-    const objects = [{ type: 'CUSTOM_TYPE', x: 5, y: 10 }];
+    const objects = [{ type: CustomTypes.CUSTOM_TYPE, x: 5, y: 10 }];
     const drawRectMock = jest.fn();
     const context = { ...getContext(), fillRect: drawRectMock };
 
