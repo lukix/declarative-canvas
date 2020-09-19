@@ -1,11 +1,10 @@
 type Camera = { zoom: number; position: { x: number; y: number } };
-type DrawingObjectType = {
+type DrawingObject = {
   type: string;
   contextProps?: Partial<CanvasRenderingContext2D>;
 };
-type DrawObjectType = (props: DrawingObjectType) => void;
-type DrawHandlerType = (
+type DrawHandler = (
   context: CanvasRenderingContext2D,
   options: any,
-  drawObject: DrawObjectType
+  drawObject: (props: DrawingObject) => void
 ) => void;

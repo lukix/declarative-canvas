@@ -1,7 +1,7 @@
 import { fillAndStroke } from '../canvasContextUtils';
 import drawMethods from '../drawMethods';
 
-const drawPath: DrawHandlerType = (
+const drawPath = (
   context: CanvasRenderingContext2D,
   {
     points: [startPoint, ...restPoints],

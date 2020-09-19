@@ -12,8 +12,6 @@ const getContext = () => {
   return (context as unknown) as CanvasRenderingContext2D;
 };
 
-const drawObjectMock = () => {};
-
 describe('drawRect', () => {
   it('should call fillRect when draw method is FILL', () => {
     // given
@@ -27,7 +25,7 @@ describe('drawRect', () => {
     };
 
     // when
-    drawRect(context, options, drawObjectMock);
+    drawRect(context, options);
 
     // then
     expect(context.strokeRect).toHaveBeenCalledTimes(0);
@@ -46,7 +44,7 @@ describe('drawRect', () => {
     };
 
     // when
-    drawRect(context, options, drawObjectMock);
+    drawRect(context, options);
 
     // then
     expect(context.strokeRect).toHaveBeenCalledTimes(1);
@@ -65,7 +63,7 @@ describe('drawRect', () => {
     };
 
     // when
-    drawRect(context, options, drawObjectMock);
+    drawRect(context, options);
 
     // then
     expect(context.strokeRect).toHaveBeenCalledTimes(1);

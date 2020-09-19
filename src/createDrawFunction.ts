@@ -23,28 +23,28 @@ const unknownTypeHandler = () => {
   throw new Error('Unknown object type passed to declarative-canvas');
 };
 
-type DrawHandlersType = { [key: string]: DrawHandlerType };
+type DrawHandlersDictionary = { [key: string]: DrawHandler };
 
-const drawObjectFactory = (
+function drawObjectFactory(
   context: CanvasRenderingContext2D,
-  drawHandlers: DrawHandlersType
-) => {
-  const drawObject: DrawObjectType = ({
+  drawHandlers: DrawHandlersDictionary
+) {
+  function drawObject({
     type,
     contextProps = {},
     ...options
-  }) => {
+  }: DrawingObject): void {
     context.save();
     const drawHandler = drawHandlers[type] || unknownTypeHandler;
     setContextProps(context, contextProps);
     drawHandler(context, options, drawObject);
     context.restore();
-  };
+  }
 
   return drawObject;
-};
+}
 
-type DrawFunctionPropsType = {
+type DrawFunctionProps = {
   context: CanvasRenderingContext2D;
   objects: Array<{
     type: string;
@@ -55,22 +55,20 @@ type DrawFunctionPropsType = {
   camera?: Camera;
 };
 
-type DrawFunctionType = (props: DrawFunctionPropsType) => void;
-type CreateDrawFunctionType = (
-  customDrawHandlers?: DrawHandlersType
-) => DrawFunctionType;
+type DrawFunction = (props: DrawFunctionProps) => void;
+type CreateDrawFunction = (
+  customDrawHandlers?: DrawHandlersDictionary
+) => DrawFunction;
 
-const createDrawFunction: CreateDrawFunctionType = (
-  customDrawHandlers = {}
-) => {
+const createDrawFunction: CreateDrawFunction = (customDrawHandlers = {}) => {
   const drawHandlers = { ...defaultDrawHandlers, ...customDrawHandlers };
-  const drawFunction: DrawFunctionType = ({
+  function drawFunction({
     context,
     objects,
     canvasWidth = context.canvas?.width,
     canvasHeight = context.canvas?.height,
     camera = { position: { x: canvasWidth / 2, y: canvasHeight / 2 }, zoom: 1 },
-  }) => {
+  }: DrawFunctionProps): void {
     context.clearRect(0, 0, canvasWidth, canvasHeight);
     context.save();
     setCameraTransform({ context, canvasWidth, canvasHeight, camera });
@@ -79,7 +77,7 @@ const createDrawFunction: CreateDrawFunctionType = (
       drawObject(objectToRender);
     });
     context.restore();
-  };
+  }
   return drawFunction;
 };
 
