@@ -1,4 +1,4 @@
-import { createDrawFunction, objectTypes } from '../index';
+import { createDrawFunction } from '../index';
 import createCanvasElement from './utils/createCanvasElement';
 
 export default { title: 'Custom Draw Handlers' };
