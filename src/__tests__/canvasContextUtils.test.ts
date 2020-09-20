@@ -1,12 +1,16 @@
 import { fillAndStroke } from '../canvasContextUtils';
 import drawMethods from '../drawMethods';
 
-const getContext = () => ({
-  fill: jest.fn(),
-  stroke: jest.fn(),
-});
+const getContext = () => {
+  const context = {
+    fill: jest.fn(),
+    stroke: jest.fn(),
+  };
 
-describe('canvasContextUtils.js', () => {
+  return (context as unknown) as CanvasRenderingContext2D;
+};
+
+describe('canvasContextUtils', () => {
   describe('fillAndStroke', () => {
     it('should call fill method when draw method is FILL', () => {
       // given

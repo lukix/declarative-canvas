@@ -8,6 +8,10 @@ export default { title: 'Rect' };
 export const basic = () => {
   const { $canvas, context } = createCanvasElement();
 
+  if (!context) {
+    return 'Context identifier is not supported';
+  }
+
   const objects = [
     {
       type: objectTypes.RECT,
@@ -26,6 +30,10 @@ export const basic = () => {
 
 export const fillAndStroke = () => {
   const { $canvas, context } = createCanvasElement();
+
+  if (!context) {
+    return 'Context identifier is not supported';
+  }
 
   const objects = [
     {
@@ -68,6 +76,10 @@ export const fillAndStroke = () => {
 
 export const rotated = () => {
   const { $canvas, context } = createCanvasElement();
+
+  if (!context) {
+    return 'Context identifier is not supported';
+  }
 
   const objects = [
     {

@@ -4,7 +4,7 @@ import jsLogoPath from './resources/js-logo.png';
 
 const draw = createDrawFunction();
 
-const createImage = src => {
+const createImage = (src: string) => {
   const image = new Image();
   image.src = src;
   return new Promise((res, rej) => {
@@ -20,6 +20,10 @@ export default { title: 'Image' };
 export const fillAndStroke = () => {
   const { $canvas, context } = createCanvasElement();
 
+  if (!context) {
+    return 'Context identifier is not supported';
+  }
+
   createImage(jsLogoPath).then(jsLogo => {
     const objects = [
       {
@@ -27,7 +31,7 @@ export const fillAndStroke = () => {
         contextProps: { fillStyle: 'lightsalmon' },
         x: 150,
         y: 150,
-        image: jsLogo,
+        image: jsLogo as CanvasImageSource,
       },
       {
         type: objectTypes.IMAGE,
@@ -37,7 +41,7 @@ export const fillAndStroke = () => {
         width: 120,
         height: 120,
         rotation: Math.PI / 4,
-        image: jsLogo,
+        image: jsLogo as CanvasImageSource,
       },
     ];
 

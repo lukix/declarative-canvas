@@ -5,7 +5,15 @@ const draw = createDrawFunction();
 
 export default { title: 'Camera' };
 
-const getPointObjects = ({ x, y, name }) => [
+const getPointObjects = ({
+  x,
+  y,
+  name,
+}: {
+  x: number;
+  y: number;
+  name: string;
+}) => [
   {
     type: objectTypes.CIRCLE,
     contextProps: { fillStyle: 'black' },
@@ -24,6 +32,10 @@ const getPointObjects = ({ x, y, name }) => [
 
 export const camera = () => {
   const { $canvas, context } = createCanvasElement();
+
+  if (!context) {
+    return 'Context identifier is not supported';
+  }
 
   const objects = [
     ...getPointObjects({ x: -200, y: -200, name: 'A' }),

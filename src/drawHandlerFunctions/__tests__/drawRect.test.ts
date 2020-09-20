@@ -1,12 +1,16 @@
 import drawRect from '../drawRect';
 import drawMethods from '../../drawMethods';
 
-const getContext = () => ({
-  translate: () => {},
-  rotate: () => {},
-  fillRect: jest.fn(),
-  strokeRect: jest.fn(),
-});
+const getContext = () => {
+  const context = {
+    translate: () => {},
+    rotate: () => {},
+    fillRect: jest.fn(),
+    strokeRect: jest.fn(),
+  };
+
+  return (context as unknown) as CanvasRenderingContext2D;
+};
 
 describe('drawRect', () => {
   it('should call fillRect when draw method is FILL', () => {

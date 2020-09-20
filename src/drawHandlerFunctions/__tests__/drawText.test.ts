@@ -1,10 +1,16 @@
 import drawText from '../drawText';
 import drawMethods from '../../drawMethods';
 
-const getContext = () => ({
-  fillText: jest.fn(),
-  strokeText: jest.fn(),
-});
+const getContext = () => {
+  const context = {
+    translate: () => {},
+    rotate: () => {},
+    fillText: jest.fn(),
+    strokeText: jest.fn(),
+  };
+
+  return (context as unknown) as CanvasRenderingContext2D;
+};
 
 describe('drawText', () => {
   it('should call fillText when draw method is FILL', () => {

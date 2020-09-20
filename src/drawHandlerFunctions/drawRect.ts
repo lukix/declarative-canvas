@@ -1,9 +1,23 @@
 import drawMethods from '../drawMethods';
 
 const drawRect = (
-  context,
-  { x, y, width, height, drawMethod = drawMethods.FILL, rotation = 0 }
-) => {
+  context: CanvasRenderingContext2D,
+  {
+    x,
+    y,
+    width,
+    height,
+    drawMethod = drawMethods.FILL,
+    rotation = 0,
+  }: {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    drawMethod?: drawMethods;
+    rotation?: number;
+  }
+): void => {
   context.translate(x, y);
   context.rotate(rotation);
   const relativeX = -width / 2;
