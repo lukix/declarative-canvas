@@ -1,4 +1,4 @@
-import { createDrawFunction, objectTypes } from '../index';
+import { createDrawFunction } from '../index';
 
 const getContext = () => {
   const context = {
