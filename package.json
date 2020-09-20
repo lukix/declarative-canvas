@@ -1,6 +1,6 @@
 {
   "name": "declarative-canvas",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "main": "lib/index.js",
   "author": "Łukasz Jenczmyk",
   "license": "MIT",

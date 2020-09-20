@@ -1,7 +1,7 @@
 # declarative-canvas
 [![npm version](https://badge.fury.io/js/declarative-canvas.svg)](https://www.npmjs.com/package/declarative-canvas)
 
-JavaScript library which lets you draw on HTML5 Canvas in a declarative way.
+JavaScript/TypeScript library which lets you draw on HTML5 Canvas in a declarative way.
 
 ## Installation
 ```
@@ -74,16 +74,16 @@ A function returned from this factory has the following signature:
   FILL_AND_STROKE: 'FILL_AND_STROKE',
 }
 ```
-Draw method tells the renderer if the given shape should be drawn by filling it with some color
+Draw method tells the renderer if the given graphical object should be drawn by filling it with some color
 or just by drawing its outline (or both).
 
-## Available object shapes
+## Available graphical objects
 
 ### Rectangle
 ```ts
 {
   type: objectTypes.RECT;
-  contextProps?: object;
+  contextProps?: Partial<CanvasRenderingContext2D>;
   drawMethod?: string;
   x: number;
   y: number;
@@ -105,7 +105,7 @@ or just by drawing its outline (or both).
 ```ts
 {
   type: objectTypes.CIRCLE;
-  contextProps?: object;
+  contextProps?: Partial<CanvasRenderingContext2D>;
   drawMethod?: string;
   x: number;
   y: number;
@@ -122,7 +122,7 @@ or just by drawing its outline (or both).
 ```ts
 {
   type: objectTypes.PATH;
-  contextProps?: object;
+  contextProps?: Partial<CanvasRenderingContext2D>;
   drawMethod?: string;
   points: Array<{ x: number; y: number }>,
   closePath?: boolean,
@@ -137,7 +137,7 @@ or just by drawing its outline (or both).
 ```ts
 {
   type: objectTypes.IMAGE;
-  contextProps?: object;
+  contextProps?: Partial<CanvasRenderingContext2D>;
   image
   x: number;
   y: number;
@@ -158,7 +158,7 @@ or just by drawing its outline (or both).
 ```ts
 {
   type: objectTypes.TEXT;
-  contextProps?: object;
+  contextProps?: Partial<CanvasRenderingContext2D>;
   drawMethod?: string;
   text: string;
   x: number;
@@ -176,8 +176,8 @@ or just by drawing its outline (or both).
 ```ts
 {
   type: objectTypes.TRANSFORM;
-  contextProps?: object;
-  children: Array<object>;
+  contextProps?: Partial<CanvasRenderingContext2D>;
+  children: Array<GraphicalObject>;
   dx?: number;
   dy?: number;
   scaleX?: number;
@@ -188,7 +188,7 @@ or just by drawing its outline (or both).
 }
 ```
 `contextProps` - [Canvas context props](#Context-Props). *Default: `{}`*  
-`children` - array of children shape objects  
+`children` - array of graphical objects  
 `dx` - displacement of child objects in X axis. *Default: `0`*  
 `dy` - displacement of child objects in Y axis. *Default: `0`*  
 `scaleX` - scaling of child objects in X axis. *Default: `1`*  
@@ -198,11 +198,11 @@ or just by drawing its outline (or both).
 `rotation` - rotation in radians of child objects. *Default: `0`*  
 
 ## Context Props
-For every shape object you can specify `contextProps` property.
-Before drawing the shape all values of `contextProps` object will be assigned
+For every graphical object you can specify `contextProps` property.
+Before drawing graphical object, all values of `contextProps` object will be assigned
 to [Canvas Rendering Context](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D).
 Some example values that you can use: `fillStyle`, `strokeStyle`, `lineWidth`, `filter` and so on.
-After drawing the shape, context properties will be restored back to their orginal values.
+After drawing the graphical object, context properties will be restored back to their orginal values.
 
 ## Custom draw handlers
 If you want to expand the capabilities of `declarative-canvas` to support more object types,
