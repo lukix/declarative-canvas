@@ -14,7 +14,7 @@ const drawRect = (
     y: number;
     width: number;
     height: number;
-    drawMethod: drawMethods;
+    drawMethod?: drawMethods;
     rotation?: number;
   }
 ): void => {

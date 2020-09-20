@@ -47,12 +47,19 @@ function drawObjectFactory<
   return drawObject;
 }
 
-type DrawFunctionProps<Handlers> = {
+type GObject<
+  Handlers extends DrawHandlersDictionary<T>,
+  T extends keyof Handlers
+> = {
+  type: T;
+  contextProps?: Partial<CanvasRenderingContext2D>;
+} & Parameters<Handlers[T]>[1];
+
+type DrawFunctionProps<
+  Handlers extends DrawHandlersDictionary<keyof Handlers>
+> = {
   context: CanvasRenderingContext2D;
-  objects: Array<{
-    type: keyof Handlers;
-    contextProps?: Partial<CanvasRenderingContext2D>;
-  }>;
+  objects: Array<GObject<Handlers, keyof Handlers>>;
   canvasWidth?: number;
   canvasHeight?: number;
   camera?: Camera;

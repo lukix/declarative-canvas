@@ -31,7 +31,7 @@ export const fillAndStroke = () => {
         contextProps: { fillStyle: 'lightsalmon' },
         x: 150,
         y: 150,
-        image: jsLogo,
+        image: jsLogo as CanvasImageSource,
       },
       {
         type: objectTypes.IMAGE,
@@ -41,7 +41,7 @@ export const fillAndStroke = () => {
         width: 120,
         height: 120,
         rotation: Math.PI / 4,
-        image: jsLogo,
+        image: jsLogo as CanvasImageSource,
       },
     ];
 

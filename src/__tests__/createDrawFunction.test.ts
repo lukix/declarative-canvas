@@ -18,13 +18,15 @@ describe('createDrawFunction', () => {
     // given
     const draw = createDrawFunction();
 
-    // incorrect assertion in order to test a case when someone is not using TypeScript
-    const UNKNOWN_TYPE = 'UNKNOWN_TYPE' as objectTypes;
+    const UNKNOWN_TYPE = 'UNKNOWN_TYPE';
 
     const objects = [{ type: UNKNOWN_TYPE }];
     const context = getContext();
 
     // when
+    // turning off TS in order to test a case when someone is not using TypeScript
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     const callDraw = () => draw({ context, objects });
 
     // then

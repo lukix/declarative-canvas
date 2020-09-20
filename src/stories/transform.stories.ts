@@ -38,7 +38,7 @@ export const transform = () => {
           type: objectTypes.TEXT,
           contextProps: {
             fillStyle: 'black',
-            textAlign: 'center',
+            textAlign: 'center' as CanvasTextAlign,
             font: '18px Times New Roman',
           },
           text: 'Text',
