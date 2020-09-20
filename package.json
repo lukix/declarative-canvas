@@ -2,6 +2,7 @@
   "name": "declarative-canvas",
   "version": "1.0.0",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "author": "Łukasz Jenczmyk",
   "license": "MIT",
   "description": "Library which lets you draw on canvas in a declarative way.",

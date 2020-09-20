@@ -9,7 +9,8 @@
       "lib": ["es2015", "dom"],
       "noImplicitAny": true,
       "strict": true,
-      "types": ["webpack-env", "jest"]
+      "types": ["webpack-env", "jest"],
+      "declaration": true,
   },
   "exclude": [
     "node_modules",
