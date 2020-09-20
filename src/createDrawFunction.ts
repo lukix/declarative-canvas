@@ -9,7 +9,7 @@ import {
   drawTransform,
 } from './drawHandlerFunctions';
 import objectTypes from './objectTypes';
-import { Camera, DrawingObject, DrawHandler } from './types';
+import { Camera, GraphicalObject, DrawHandler } from './types';
 
 const defaultDrawHandlers = {
   [objectTypes.CIRCLE]: drawCircle,
@@ -36,7 +36,7 @@ function drawObjectFactory<
     type,
     contextProps = {},
     ...options
-  }: DrawingObject<keyof Handlers>): void {
+  }: GraphicalObject<keyof Handlers>): void {
     context.save();
     const drawHandler = drawHandlers[type] || unknownTypeHandler;
     setContextProps(context, contextProps);

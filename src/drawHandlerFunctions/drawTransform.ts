@@ -1,4 +1,4 @@
-import { DrawingObject } from '../types';
+import { GraphicalObject } from '../types';
 
 const drawTransform = <T>(
   context: CanvasRenderingContext2D,
@@ -19,9 +19,9 @@ const drawTransform = <T>(
     skewX?: number;
     skewY?: number;
     rotation?: number;
-    children: Array<DrawingObject<T>>;
+    children: Array<GraphicalObject<T>>;
   },
-  drawObject: (props: DrawingObject<T>) => void
+  drawObject: (props: GraphicalObject<T>) => void
 ): void => {
   context.setTransform(scaleX, skewY, skewX, scaleY, dx, dy);
   context.rotate(rotation);
