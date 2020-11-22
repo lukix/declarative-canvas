@@ -24,7 +24,7 @@
     "test:watch": "jest --watch",
     "build": "tsc",
     "lint": "eslint ./src/**/*.ts",
-    "prepush": "yarn run lint && yarn run test",
+    "prepush": "yarn run lint && yarn run test && prettier --check ./src/*",
     "prepublishOnly": "yarn run build && yarn run prepush",
     "storybook": "start-storybook",
     "build-storybook": "build-storybook -c .storybook -o out"

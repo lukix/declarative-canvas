@@ -1,4 +1,8 @@
-import { createDrawFunction, objectTypes, convertCanvasCoordinates } from '../index';
+import {
+  createDrawFunction,
+  objectTypes,
+  convertCanvasCoordinates,
+} from '../index';
 import createCanvasElement from './utils/createCanvasElement';
 import createCanvasDescriptionWrapper from './utils/createCanvasDescriptionWrapper';
 
@@ -13,13 +17,16 @@ export const convertCoordinates = () => {
     return 'Context identifier is not supported';
   }
 
+  const centerAlign: CanvasTextAlign = 'center';
+  const middleBaseline: CanvasTextBaseline = 'middle';
+
   const textObject = {
     type: objectTypes.TEXT,
     contextProps: {
       fillStyle: 'indianred',
       font: '40px Courier',
-      textAlign: 'center' as CanvasTextAlign,
-      textBaseline: 'middle' as CanvasTextBaseline
+      textAlign: centerAlign,
+      textBaseline: middleBaseline,
     },
     x: 50,
     y: 250,
@@ -27,22 +34,26 @@ export const convertCoordinates = () => {
   };
 
   const dotObjects = [] as Array<{
-    type: objectTypes,
-    contextProps: Partial<CanvasRenderingContext2D>,
-    x: number,
-    y: number,
-    radius: number,
+    type: objectTypes;
+    contextProps: Partial<CanvasRenderingContext2D>;
+    x: number;
+    y: number;
+    radius: number;
   }>;
 
   const camera = {
     position: { x: textObject.x, y: textObject.y },
-    zoom: 0.8
+    zoom: 0.8,
   };
 
-  
-
   $canvas.addEventListener('click', event => {
-    const { x, y } = convertCanvasCoordinates(event.offsetX, event.offsetY, $canvas.width, $canvas.height, camera);
+    const { x, y } = convertCanvasCoordinates(
+      event.offsetX,
+      event.offsetY,
+      $canvas.width,
+      $canvas.height,
+      camera
+    );
 
     dotObjects.push({
       type: objectTypes.CIRCLE,
@@ -54,14 +65,11 @@ export const convertCoordinates = () => {
   });
 
   const drawLoop = () => {
-    const objects = [
-      textObject,
-      ...dotObjects,
-    ];
+    const objects = [textObject, ...dotObjects];
     draw({ context, objects, camera });
     requestAnimationFrame(drawLoop);
-  }
-  
+  };
+
   drawLoop();
 
   return createCanvasDescriptionWrapper(

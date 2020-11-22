@@ -5,13 +5,16 @@ const convertCanvasCoordinates = (
   y: number,
   canvasWidth: number,
   canvasHeight: number,
-  camera: Camera,
+  camera: Camera
 ) => {
-  const { zoom, position: { x: cameraX, y: cameraY } } = camera;
+  const {
+    zoom,
+    position: { x: cameraX, y: cameraY },
+  } = camera;
   return {
     x: cameraX + (x - canvasWidth / 2) / zoom,
-    y: cameraY + (y - canvasHeight / 2) / zoom
+    y: cameraY + (y - canvasHeight / 2) / zoom,
   };
-}
+};
 
 export default convertCanvasCoordinates;
