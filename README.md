@@ -30,10 +30,11 @@ draw({ context, objects: objectsToRender });
 More examples can be found in the [storybook](https://lukix.github.io/declarative-canvas). Source code of storybook stories is placed in the [src/stories](./src/stories) directory.
 
 ## API Reference
-`declarative-canvas` exports three objects/functions:
+`declarative-canvas` exports four objects/functions:
 - `createDrawFunction` - draw function factory,
 - `objectTypes` - dictionary object of available object types which can be drawn,
 - `drawMethods` - dictionary object of available drawing methods.
+- `convertCanvasCoordinates` - lets you convert canvas coordinates to base coordinates that you use to render objects.
 
 ### createDrawFunction
 A factory function that takes one optional argument:
@@ -76,6 +77,18 @@ A function returned from this factory has the following signature:
 ```
 Draw method tells the renderer if the given graphical object should be drawn by filling it with some color
 or just by drawing its outline (or both).
+
+### convertCanvasCoordinates
+```ts
+({
+  x: number,
+  y: number,
+  canvasWidth: number,
+  canvasHeight: number,
+  camera: Camera,
+}) => { x: number, y: number }
+```
+A function that converts canvas coordinates (for example `event.offsetX` and `event.offsetY` from `onclick` event) to base coordinates that you use to render objects (taking into account any transformations caused by camera's position and zoom).
 
 ## Available graphical objects
 
