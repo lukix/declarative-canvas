@@ -17,7 +17,7 @@ const createImage = (src: string) => {
 
 export default { title: 'Image' };
 
-export const fillAndStroke = () => {
+export const drawImage = () => {
   const { $canvas, context } = createCanvasElement();
 
   if (!context) {

@@ -1,5 +1,6 @@
 import { createDrawFunction, objectTypes } from '../index';
 import createCanvasElement from './utils/createCanvasElement';
+import createCanvasDescriptionWrapper from './utils/createCanvasDescriptionWrapper';
 
 const draw = createDrawFunction();
 
@@ -45,9 +46,25 @@ export const camera = () => {
     ...getPointObjects({ x: 0, y: 0, name: 'E' }),
   ];
 
-  const camera = { position: { x: 0, y: 0 }, zoom: 0.6 };
+  const lastCursorPosition = { x: 0, y: 0 };
+  $canvas.addEventListener('mousemove', (event) => {
+    lastCursorPosition.x = event.clientX;
+    lastCursorPosition.y = event.clientY;
+  });
 
-  draw({ context, objects, camera });
+  const drawLoop = () => {
+    const camera = {
+      position: { x: lastCursorPosition.x * 0.3, y: lastCursorPosition.y * 0.3 },
+      zoom: 0.6
+    };
+    draw({ context, objects, camera });
+    requestAnimationFrame(drawLoop);
+  }
+  
+  drawLoop();
 
-  return $canvas;
+  return createCanvasDescriptionWrapper(
+    'Move cursor over the canvas to influence camera\'s position',
+    $canvas
+  );
 };
