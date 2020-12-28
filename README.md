@@ -80,13 +80,13 @@ or just by drawing its outline (or both).
 
 ### convertCanvasCoordinates
 ```ts
-({
+(
   x: number,
   y: number,
   canvasWidth: number,
   canvasHeight: number,
-  camera: Camera,
-}) => { x: number, y: number }
+  camera: Camera
+) => { x: number, y: number }
 ```
 A function that converts canvas coordinates (for example `event.offsetX` and `event.offsetY` from `onclick` event) to base coordinates that you use to render objects (taking into account any transformations caused by camera's position and zoom).
 
