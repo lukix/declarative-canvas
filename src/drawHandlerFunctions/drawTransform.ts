@@ -23,7 +23,7 @@ const drawTransform = <T>(
   },
   drawObject: (props: GraphicalObject<T>) => void
 ): void => {
-  context.setTransform(scaleX, skewY, skewX, scaleY, dx, dy);
+  context.transform(scaleX, skewY, skewX, scaleY, dx, dy);
   context.rotate(rotation);
   children.forEach(childObject => {
     drawObject(childObject);
