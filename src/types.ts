@@ -1,4 +1,8 @@
-export type Camera = { zoom: number; position: { x: number; y: number } };
+export type Camera = {
+  zoom: number;
+  position: { x: number; y: number };
+  rotation?: number;
+};
 export type GraphicalObject<T> = {
   type: T;
   contextProps?: Partial<CanvasRenderingContext2D>;
