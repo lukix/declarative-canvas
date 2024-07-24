@@ -24,8 +24,8 @@
     "test:watch": "jest --watch",
     "build": "tsc",
     "lint": "eslint ./src/**/*.ts",
-    "prepush": "yarn run lint && yarn run test && prettier --check ./src/*",
-    "prepublishOnly": "yarn run build && yarn run prepush",
+    "prepush": "npm run lint && npm run test && prettier --check ./src/*",
+    "prepublishOnly": "npm run build && npm run prepush",
     "storybook": "start-storybook",
     "build-storybook": "build-storybook -c .storybook -o out"
   },
@@ -45,7 +45,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "yarn run prepush"
+      "pre-push": "npm run prepush"
     }
   }
 }
