@@ -44,6 +44,7 @@ export const convertCoordinates = () => {
   const camera = {
     position: { x: textObject.x, y: textObject.y },
     zoom: 0.8,
+    rotation: Math.PI / 6,
   };
 
   $canvas.addEventListener('click', event => {
@@ -76,7 +77,7 @@ export const convertCoordinates = () => {
     `declarative-canvas exports a function that lets you convert canvas coordinates
     (for example event.offsetX and event.offsetY from onclick event)
     to base coordinates that you use to render objects
-    (taking into account any transformations caused by camera's position and zoom).`,
+    (taking into account any transformations caused by camera's position, zoom and rotation).`,
     $canvas
   );
 };

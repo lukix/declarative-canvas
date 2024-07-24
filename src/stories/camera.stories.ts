@@ -31,7 +31,56 @@ const getPointObjects = ({
   },
 ];
 
-export const camera = () => {
+const points = [
+  { x: -200, y: -200, name: 'A' },
+  { x: 200, y: -200, name: 'B' },
+  { x: 200, y: 200, name: 'C' },
+  { x: -200, y: 200, name: 'D' },
+  { x: 0, y: 0, name: 'E' },
+];
+
+const objects = [
+  ...getPointObjects(points[0]),
+  ...getPointObjects(points[1]),
+  ...getPointObjects(points[2]),
+  ...getPointObjects(points[3]),
+  ...getPointObjects(points[4]),
+];
+
+export const cameraTranslation = () => {
+  const { $canvas, context } = createCanvasElement();
+
+  if (!context) {
+    return 'Context identifier is not supported';
+  }
+
+  const lastCursorPosition = { x: 0, y: 0 };
+  $canvas.addEventListener('mousemove', event => {
+    lastCursorPosition.x = event.clientX;
+    lastCursorPosition.y = event.clientY;
+  });
+
+  const drawLoop = () => {
+    const camera = {
+      position: {
+        x: lastCursorPosition.x * 0.3,
+        y: lastCursorPosition.y * 0.3,
+      },
+      zoom: 0.6,
+    };
+    draw({ context, objects, camera });
+    requestAnimationFrame(drawLoop);
+  };
+
+  drawLoop();
+
+  return createCanvasDescriptionWrapper(
+    "Move the cursor over the canvas to influence camera's position",
+    $canvas
+  );
+};
+
+export const cameraRotation = () => {
   const { $canvas, context } = createCanvasElement();
 
   if (!context) {
@@ -46,25 +95,35 @@ export const camera = () => {
     ...getPointObjects({ x: 0, y: 0, name: 'E' }),
   ];
 
-  const lastCursorPosition = { x: 0, y: 0 };
-  $canvas.addEventListener('mousemove', (event) => {
+  const lastCursorPosition = { x: $canvas.width / 2, y: 0 };
+  let focusedObjectIndex = 0;
+  $canvas.addEventListener('mousemove', event => {
     lastCursorPosition.x = event.clientX;
     lastCursorPosition.y = event.clientY;
+  });
+  $canvas.addEventListener('click', () => {
+    focusedObjectIndex = (focusedObjectIndex + 1) % points.length;
   });
 
   const drawLoop = () => {
     const camera = {
-      position: { x: lastCursorPosition.x * 0.3, y: lastCursorPosition.y * 0.3 },
-      zoom: 0.6
+      position: {
+        x: points[focusedObjectIndex].x,
+        y: points[focusedObjectIndex].y,
+      },
+      rotation:
+        (lastCursorPosition.x - $canvas.width / 2) *
+        ((2 * Math.PI) / $canvas.width),
+      zoom: 0.6,
     };
     draw({ context, objects, camera });
     requestAnimationFrame(drawLoop);
-  }
-  
+  };
+
   drawLoop();
 
   return createCanvasDescriptionWrapper(
-    'Move cursor over the canvas to influence camera\'s position',
+    "Move the cursor left and right over the canvas to influence camera's rotation. Click to move the camera over the next point.",
     $canvas
   );
 };

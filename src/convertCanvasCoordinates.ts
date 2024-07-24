@@ -1,4 +1,6 @@
 import { Camera } from './types';
+import { getInverseTransformMatrix } from './getTransformMatrix';
+import multiplyMatrices from './multiplyMatrices';
 
 const convertCanvasCoordinates = (
   x: number,
@@ -7,13 +9,21 @@ const convertCanvasCoordinates = (
   canvasHeight: number,
   camera: Camera
 ) => {
-  const {
-    zoom,
-    position: { x: cameraX, y: cameraY },
-  } = camera;
+  const inverseTransformMatrix = getInverseTransformMatrix({
+    canvasWidth,
+    canvasHeight,
+    camera,
+  });
+
+  const coordinatesMatrix = [[x], [y], [1]];
+  const canvasCoordinatesMatrix = multiplyMatrices(
+    inverseTransformMatrix,
+    coordinatesMatrix
+  );
+
   return {
-    x: cameraX + (x - canvasWidth / 2) / zoom,
-    y: cameraY + (y - canvasHeight / 2) / zoom,
+    x: canvasCoordinatesMatrix[0][0],
+    y: canvasCoordinatesMatrix[1][0],
   };
 };
 

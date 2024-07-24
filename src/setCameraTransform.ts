@@ -1,4 +1,5 @@
 import { Camera } from './types';
+import { getTransformMatrix } from './getTransformMatrix';
 
 const setCameraTransform = ({
   context,
@@ -11,13 +12,18 @@ const setCameraTransform = ({
   canvasHeight: number;
   camera: Camera;
 }): void => {
+  const transformMatrix = getTransformMatrix({
+    canvasWidth,
+    canvasHeight,
+    camera,
+  });
   context.setTransform(
-    camera.zoom,
-    0,
-    0,
-    camera.zoom,
-    -camera.position.x * camera.zoom + canvasWidth / 2,
-    -camera.position.y * camera.zoom + canvasHeight / 2
+    transformMatrix[0][0],
+    transformMatrix[1][0],
+    transformMatrix[0][1],
+    transformMatrix[1][1],
+    transformMatrix[0][2],
+    transformMatrix[1][2]
   );
 };
 

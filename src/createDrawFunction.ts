@@ -74,7 +74,11 @@ function createDrawFunction<CH extends DrawHandlersDictionary<keyof CH>>(
     objects,
     canvasWidth = context.canvas?.width,
     canvasHeight = context.canvas?.height,
-    camera = { position: { x: canvasWidth / 2, y: canvasHeight / 2 }, zoom: 1 },
+    camera = {
+      position: { x: canvasWidth / 2, y: canvasHeight / 2 },
+      zoom: 1,
+      rotation: 0,
+    },
   }: DrawFunctionProps<typeof defaultDrawHandlers & CH>): void {
     context.clearRect(0, 0, canvasWidth, canvasHeight);
     context.save();

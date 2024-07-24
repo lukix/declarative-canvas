@@ -16,12 +16,12 @@ import { createDrawFunction, objectTypes } from 'declarative-canvas';
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
 
+const draw = createDrawFunction();
+
 const objectsToRender = [
   { type: objectTypes.RECT, x: 50, y: 100, width: 200, height: 100 },
   { type: objectTypes.CIRCLE, x: 200, y: 100, radius: 100 },
 ];
-
-const draw = createDrawFunction();
 
 draw({ context, objects: objectsToRender });
 ```
@@ -51,7 +51,7 @@ A function returned from this factory has the following signature:
   objects: Array<object>,
   canvasWidth = context.canvas && context.canvas.width,
   canvasHeight = context.canvas && context.canvas.width,
-  camera = { position: { x: canvasWidth / 2, y: canvasHeight / 2 }, zoom: 1 },
+  camera = { position: { x: canvasWidth / 2, y: canvasHeight / 2 }, zoom: 1, rotation: 0 },
 }) => void
 ```
 
@@ -88,7 +88,7 @@ or just by drawing its outline (or both).
   camera: Camera
 ) => { x: number, y: number }
 ```
-A function that converts canvas coordinates (for example `event.offsetX` and `event.offsetY` from `onclick` event) to base coordinates that you use to render objects (taking into account any transformations caused by camera's position and zoom).
+A function that converts canvas coordinates (for example `event.offsetX` and `event.offsetY` from `onclick` event) to base coordinates that you use to render objects (taking into account any transformations caused by camera's position, rotation and zoom).
 
 ## Available graphical objects
 
