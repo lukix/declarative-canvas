@@ -9,6 +9,13 @@ if (!$menu || !$storyContainer) {
 
 let createdStory: CreatedStoryType | null = null;
 
+const createDescriptionElement = (description: string) => {
+  const $description = document.createElement('p');
+  $description.classList.add('story-description');
+  $description.innerText = description;
+  return $description;
+};
+
 const selectStory = (storyIndex: number) => {
   // Clean up old story
   if (createdStory) {
@@ -27,6 +34,9 @@ const selectStory = (storyIndex: number) => {
   $newStoryMenuItem?.classList.add('selected');
 
   createdStory = newStory.create();
+  if (newStory.description) {
+    $storyContainer.appendChild(createDescriptionElement(newStory.description));
+  }
   $storyContainer.appendChild(createdStory.element);
 };
 

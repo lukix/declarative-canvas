@@ -9,7 +9,6 @@ const createDivWithContent = (content: string) => {
 
 export const animation = {
   name: 'Animation',
-  description: 'Lorem ipsum',
   create: () => {
     let isRunning = true;
     const { $canvas, context } = createCanvasElement();

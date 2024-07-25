@@ -9,7 +9,6 @@ const createDivWithContent = (content: string) => {
 
 export const pathBasic = {
   name: 'Path',
-  description: 'Drawing paths',
   create: () => {
     const { $canvas, context } = createCanvasElement();
 

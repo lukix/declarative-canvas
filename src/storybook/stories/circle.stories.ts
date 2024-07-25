@@ -9,7 +9,6 @@ const createDivWithContent = (content: string) => {
 
 export const circleBasic = {
   name: 'Circle',
-  description: 'Drawing circles',
   create: () => {
     const { $canvas, context } = createCanvasElement();
 

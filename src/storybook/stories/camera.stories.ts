@@ -50,7 +50,8 @@ const objects = [
 
 export const cameraTranslation = {
   name: 'Camera - Translation',
-  description: 'Lorem ipsum',
+  description:
+    "Move the cursor over the canvas to influence camera's position.",
   create: () => {
     let isRunning = true;
     const { $canvas, context } = createCanvasElement();
@@ -98,7 +99,8 @@ export const cameraTranslation = {
 
 export const cameraRotation = {
   name: 'Camera - Rotation',
-  description: 'Lorem ipsum',
+  description:
+    "Move the cursor left and right over the canvas to influence camera's rotation. Click to move the camera over the next point.",
   create: () => {
     let isRunning = true;
     const { $canvas, context } = createCanvasElement();

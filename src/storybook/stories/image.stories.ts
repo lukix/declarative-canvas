@@ -21,7 +21,6 @@ const createDivWithContent = (content: string) => {
 
 export const imageBasic = {
   name: 'Image',
-  description: 'Drawing images',
   create: () => {
     const { $canvas, context } = createCanvasElement();
 

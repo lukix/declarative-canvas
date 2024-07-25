@@ -9,7 +9,8 @@ const createDivWithContent = (content: string) => {
 
 export const transformBasic = {
   name: 'Transform',
-  description: 'Lorem ipsum',
+  description:
+    'With transform object you can apply translation, rotation and scaling to children objects.',
   create: () => {
     const { $canvas, context } = createCanvasElement();
 

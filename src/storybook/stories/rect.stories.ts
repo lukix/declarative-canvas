@@ -9,7 +9,6 @@ const createDivWithContent = (content: string) => {
 
 export const rectBasic = {
   name: 'Rect - Basic',
-  description: 'Drawing a rectangle',
   create: () => {
     const { $canvas, context } = createCanvasElement();
 
@@ -42,7 +41,6 @@ export const rectBasic = {
 
 export const rectFillAndStroke = {
   name: 'Rect - Fill and Stroke',
-  description: 'Drawing a rectangle',
   create: () => {
     const { $canvas, context } = createCanvasElement();
 
@@ -98,7 +96,6 @@ export const rectFillAndStroke = {
 
 export const rectRotated = {
   name: 'Rect - Rotated',
-  description: 'Drawing a rectangle',
   create: () => {
     const { $canvas, context } = createCanvasElement();
 

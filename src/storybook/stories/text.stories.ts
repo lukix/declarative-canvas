@@ -9,7 +9,6 @@ const createDivWithContent = (content: string) => {
 
 export const textBasic = {
   name: 'Text',
-  description: 'Drawing text',
   create: () => {
     const { $canvas, context } = createCanvasElement();
 

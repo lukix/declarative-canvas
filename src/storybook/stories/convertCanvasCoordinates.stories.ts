@@ -14,7 +14,7 @@ const createDivWithContent = (content: string) => {
 export const convertCanvasCoordinatesBasic = {
   name: 'Convert Canvas Coordinates',
   description:
-    "declarative-canvas exports a function that lets you convert canvas coordinates (for example event.offsetX and event.offsetY from onclick event) to base coordinates that you use to render objects (taking into account any transformations caused by camera's position and zoom).",
+    "declarative-canvas exports a function that lets you convert canvas coordinates (for example event.offsetX and event.offsetY from onclick event) to base coordinates that you use to render objects (taking into account any transformations caused by camera's position, zoom and rotation).",
   create: () => {
     const { $canvas, context } = createCanvasElement();
 
