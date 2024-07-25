@@ -10,7 +10,7 @@ const getContext = () => {
     setTransform: () => {},
   };
 
-  return (context as unknown) as CanvasRenderingContext2D;
+  return context as unknown as CanvasRenderingContext2D;
 };
 
 describe('createDrawFunction', () => {

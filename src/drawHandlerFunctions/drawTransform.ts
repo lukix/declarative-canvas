@@ -25,7 +25,7 @@ const drawTransform = <T>(
 ): void => {
   context.transform(scaleX, skewY, skewX, scaleY, dx, dy);
   context.rotate(rotation);
-  children.forEach(childObject => {
+  children.forEach((childObject) => {
     drawObject(childObject);
   });
 };

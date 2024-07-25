@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>declarative-canvas demo</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #FEF3E2;
+        color: #4d5565;
+      }
+
+      #sidebar {
+        margin: 0;
+        padding: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 240px;
+        height: 100%;
+        background-color: #BEC6A0;
+        border-right: 2px solid #708871;
+      }
+
+      .sidebar-header {
+        text-align: center;
+        padding: 20px 0;
+        font-size: 1.4rem;
+        font-weight: bold;
+      }
+
+      #menu {
+        margin: 0;
+        padding: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+
+      .menu-item {
+        list-style: none;
+        padding: 8px 16px;
+        font-size: 1rem;
+        cursor: pointer;
+        border-bottom: 1px solid #708871;
+      }
+
+      #menu .menu-item:hover {
+        background-color: #708871;
+        color: white;
+      }
+
+      .menu-item.selected {
+        background-color: #708871;
+        color: white;
+      }
+
+      #story-container {
+        padding-top: 20px;
+        padding-left: 260px;
+      }
+
+      .story-description {
+        max-width: 600px;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="sidebar">
+      <header class="sidebar-header">declarative-canvas</header>
+      <ul id="menu"><!-- Menu content is generated automatically --></ul>
+    </div>
+    <div id="story-container"><!-- Story page is generated automatically --></div>
+    <script type="module" src="/src/storybook/init.ts"></script>
+  </body>
+</html>

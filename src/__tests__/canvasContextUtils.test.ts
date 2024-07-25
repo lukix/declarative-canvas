@@ -7,7 +7,7 @@ const getContext = () => {
     stroke: jest.fn(),
   };
 
-  return (context as unknown) as CanvasRenderingContext2D;
+  return context as unknown as CanvasRenderingContext2D;
 };
 
 describe('canvasContextUtils', () => {

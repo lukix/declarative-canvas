@@ -1,4 +1,7 @@
-const createCanvasDescriptionWrapper = (description: string, $canvas: HTMLCanvasElement) => {
+const createCanvasDescriptionWrapper = (
+  description: string,
+  $canvas: HTMLCanvasElement
+) => {
   const $wrapper = document.createElement('div');
   const $description = document.createElement('p');
   $description.innerHTML = description;
