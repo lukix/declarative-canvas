@@ -16,7 +16,7 @@ export type CreatedStoryType = {
 
 export type StoryType = {
   name: string;
-  description: string;
+  description?: string;
   create: () => CreatedStoryType;
 };
 
