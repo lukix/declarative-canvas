@@ -2,7 +2,7 @@ import { createDrawFunction, objectTypes } from '../../index';
 import createCanvasElement from '../utils/createCanvasElement';
 import jsLogoPath from './resources/js-logo.png';
 
-const createImage = (src: string) => {
+const createImage = (src: string): Promise<HTMLImageElement> => {
   const image = new Image();
   image.src = src;
   return new Promise((res, rej) => {
@@ -40,7 +40,7 @@ export const imageBasic = {
           contextProps: { fillStyle: '#BEC6A0' },
           x: 150,
           y: 150,
-          image: jsLogo as CanvasImageSource,
+          image: jsLogo,
         },
         {
           type: objectTypes.IMAGE,
@@ -50,7 +50,7 @@ export const imageBasic = {
           width: 120,
           height: 120,
           rotation: Math.PI / 4,
-          image: jsLogo as CanvasImageSource,
+          image: jsLogo,
         },
       ];
 
