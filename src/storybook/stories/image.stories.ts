@@ -33,7 +33,7 @@ export const imageBasic = {
 
     const draw = createDrawFunction();
 
-    createImage(jsLogoPath).then(jsLogo => {
+    createImage(jsLogoPath).then((jsLogo) => {
       const objects = [
         {
           type: objectTypes.IMAGE,

@@ -30,7 +30,7 @@ type DrawHandlersDictionary<T extends string | number | symbol> = Record<
 >;
 
 function drawObjectFactory<
-  Handlers extends DrawHandlersDictionary<keyof Handlers>
+  Handlers extends DrawHandlersDictionary<keyof Handlers>,
 >(context: CanvasRenderingContext2D, drawHandlers: Handlers) {
   function drawObject({
     type,
@@ -49,14 +49,14 @@ function drawObjectFactory<
 
 type GObject<
   Handlers extends DrawHandlersDictionary<T>,
-  T extends keyof Handlers
+  T extends keyof Handlers,
 > = {
   type: T;
   contextProps?: Partial<CanvasRenderingContext2D>;
 } & Parameters<Handlers[T]>[1];
 
 type DrawFunctionProps<
-  Handlers extends DrawHandlersDictionary<keyof Handlers>
+  Handlers extends DrawHandlersDictionary<keyof Handlers>,
 > = {
   context: CanvasRenderingContext2D;
   objects: Array<GObject<Handlers, keyof Handlers>>;
@@ -84,7 +84,7 @@ function createDrawFunction<CH extends DrawHandlersDictionary<keyof CH>>(
     context.save();
     setCameraTransform({ context, canvasWidth, canvasHeight, camera });
     const drawObject = drawObjectFactory(context, drawHandlers);
-    objects.forEach(objectToRender => {
+    objects.forEach((objectToRender) => {
       drawObject(objectToRender);
     });
     context.restore();

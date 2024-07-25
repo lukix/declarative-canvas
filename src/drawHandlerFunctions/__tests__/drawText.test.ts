@@ -9,7 +9,7 @@ const getContext = () => {
     strokeText: jest.fn(),
   };
 
-  return (context as unknown) as CanvasRenderingContext2D;
+  return context as unknown as CanvasRenderingContext2D;
 };
 
 describe('drawText', () => {

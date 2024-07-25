@@ -56,7 +56,7 @@ export const convertCanvasCoordinatesBasic = {
       rotation: Math.PI / 6,
     };
 
-    $canvas.addEventListener('click', event => {
+    $canvas.addEventListener('click', (event) => {
       const { x, y } = convertCanvasCoordinates(
         event.offsetX,
         event.offsetY,

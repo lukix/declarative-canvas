@@ -43,7 +43,7 @@ const createMenuItem = (storyIndex: number) => {
 
 const init = () => {
   const menuItems = stories.map((_, storyIndex) => createMenuItem(storyIndex));
-  menuItems.forEach($li => $menu.appendChild($li));
+  menuItems.forEach(($li) => $menu.appendChild($li));
 
   selectStory(0);
 };
