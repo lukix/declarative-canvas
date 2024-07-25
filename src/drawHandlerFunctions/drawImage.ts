@@ -8,7 +8,7 @@ const drawImage = (
     height = Number(image.height),
     rotation = 0,
   }: {
-    image: CanvasImageSource;
+    image: HTMLCanvasElement;
     x: number;
     y: number;
     width?: number;
