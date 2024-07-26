@@ -2,7 +2,7 @@ name: Deploy storybook to Pages
 
 on:
   push:
-    branches: [ master, bring-back-github-pages-deployments ]
+    branches: [ master ]
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
