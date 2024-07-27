@@ -16,8 +16,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/lukix/declarative-canvas.git"
+    "url": "git+https://github.com/lukix/declarative-canvas.git"
   },
+  "files": ["lib/", "!lib/storybook/", "!__tests__/"],
   "scripts": {
     "dev": "tsc --watch",
     "test": "jest",
@@ -25,7 +26,7 @@
     "build": "tsc",
     "lint": "eslint ./src/**/*.ts",
     "verify": "npm run lint && npm run test && prettier --check ./src/* && tsc --noEmit",
-    "prepublishOnly": "npm run build && npm run verify",
+    "prepublishOnly": "npm run verify && npm run build",
     "storybook": "vite dev",
     "build-storybook": "vite build --outDir out",
     "prepare": "husky"
