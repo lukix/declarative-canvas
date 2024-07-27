@@ -63,6 +63,7 @@ type DrawFunctionProps<
   canvasWidth?: number;
   canvasHeight?: number;
   camera?: Camera;
+  clearCanvas?: boolean;
 };
 
 function createDrawFunction<CH extends DrawHandlersDictionary<keyof CH>>(
@@ -79,8 +80,11 @@ function createDrawFunction<CH extends DrawHandlersDictionary<keyof CH>>(
       zoom: 1,
       rotation: 0,
     },
+    clearCanvas = true,
   }: DrawFunctionProps<typeof defaultDrawHandlers & CH>): void {
-    context.clearRect(0, 0, canvasWidth, canvasHeight);
+    if (clearCanvas) {
+      context.clearRect(0, 0, canvasWidth, canvasHeight);
+    }
     context.save();
     setCameraTransform({ context, canvasWidth, canvasHeight, camera });
     const drawObject = drawObjectFactory(context, drawHandlers);
