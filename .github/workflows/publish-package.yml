@@ -1,9 +1,7 @@
 name: Publish package to npm
 on:
-  push:
-    branches: [ replace-travis-with-github-actions-for-publishing ]
-  # release:
-  #   types: [published]
+  release:
+    types: [published]
 jobs:
   build:
     runs-on: ubuntu-latest
