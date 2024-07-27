@@ -27,7 +27,7 @@ draw({ context, objects: objectsToRender });
 ```
 
 ## Storybook
-More examples can be found in the [storybook](https://lukix.github.io/declarative-canvas). Source code of storybook stories is placed in the [src/stories](./src/stories) directory.
+More examples can be found in the [storybook](https://lukix.github.io/declarative-canvas). Source code of storybook stories is placed in the [src/stories](./src/storybook/stories) directory.
 
 ## API Reference
 `declarative-canvas` exports four objects/functions:
