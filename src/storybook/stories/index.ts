@@ -8,6 +8,7 @@ import { imageBasic } from './image.stories';
 import { transformBasic } from './transform.stories';
 import { customHandlersBasic } from './customHandlers.stories';
 import { convertCanvasCoordinatesBasic } from './convertCanvasCoordinates.stories';
+import { performanceBasic } from './performance.stories';
 
 export type CreatedStoryType = {
   element: HTMLElement;
@@ -34,6 +35,7 @@ const stories: StoryType[] = [
   transformBasic,
   customHandlersBasic,
   convertCanvasCoordinatesBasic,
+  performanceBasic,
 ];
 
 export default stories;
